@@ -22,4 +22,4 @@ to different user roles: business owners, customers, and administrators.
 - "As an admin, I want to manage listings and user accounts to keep the platform reliable and trustworthy."
 
 ## Look and feel of the website:
-here is our balsamic mockup: [balsamic link](https://balsamiq.cloud/strku7p/plt70x8/r0622)
+here is our balsamic mockup: [balsamic link](https://balsamiq.cloud/strku7p/plt70x8)
