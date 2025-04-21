@@ -21,3 +21,5 @@ to different user roles: business owners, customers, and administrators.
 - "As a customer, I want to search for local services and read reviews so that I can choose the best option."
 - "As an admin, I want to manage listings and user accounts to keep the platform reliable and trustworthy."
 
+## Look and feel of the website:
+here is our balsamic mockup: [balsamic link](https://balsamiq.cloud/strku7p/plt70x8/r0622)
