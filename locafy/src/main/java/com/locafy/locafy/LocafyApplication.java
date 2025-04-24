@@ -2,9 +2,11 @@ package com.locafy.locafy;
 
 import com.locafy.locafy.domain.Business;
 import com.locafy.locafy.domain.BusinessOwner;
+import com.locafy.locafy.domain.Favorites;
 import com.locafy.locafy.domain.Local;
 import com.locafy.locafy.repositories.BusinessOwnerRepository;
 import com.locafy.locafy.repositories.BusinessRepository;
+import com.locafy.locafy.repositories.FavoritesRepository;
 import com.locafy.locafy.repositories.LocalRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,7 +22,7 @@ public class LocafyApplication {
 		SpringApplication.run(LocafyApplication.class, args);
 	}
 	@Bean
-	CommandLineRunner commandLineRunner (LocalRepository localRepository) {
+	CommandLineRunner commandLineRunner (LocalRepository localRepository, BusinessRepository businessRepository, FavoritesRepository favoritesRepository,BusinessOwnerRepository businessOwnerRepository) {
 		return args -> {
 			Local local1 = new Local(
 					"george123",
@@ -48,12 +50,8 @@ public class LocafyApplication {
 			localRepository.save(local2);
 
 
-		};
-	}
+			//business owner logic
 
-	@Bean
-	CommandLineRunner businessOwnerRunner(BusinessOwnerRepository businessOwnerRepository) {
-		return args -> {
 			BusinessOwner owner1 = new BusinessOwner();
 			owner1.setUsername("biz123");
 			owner1.setPassword("pass123");
@@ -74,12 +72,10 @@ public class LocafyApplication {
 
 			businessOwnerRepository.save(owner1);
 			businessOwnerRepository.save(owner2);
-		};
-	}
 
-	@Bean
-	CommandLineRunner loadData(BusinessOwnerRepository ownerRepo, BusinessRepository businessRepo) {
-		return args -> {
+
+			//business logic
+
 			BusinessOwner owner = new BusinessOwner();
 			owner.setUsername("ceoAnna");
 			owner.setFisrtName("Anna");
@@ -89,7 +85,7 @@ public class LocafyApplication {
 			owner.setPassword("safePass123");
 			owner.setAddress("Cluj, str. Observatorului, nr. 15");
 
-			BusinessOwner savedOwner = ownerRepo.save(owner);
+			BusinessOwner savedOwner = businessOwnerRepository.save(owner);
 
 			Business biz1 = new Business();
 			biz1.setBusinessName("Anna’s Coffee");
@@ -105,9 +101,31 @@ public class LocafyApplication {
 			biz2.setWebsite("www.annasbakery.ro");
 			biz2.setOwner(savedOwner);
 
-			businessRepo.saveAll(List.of(biz1, biz2));
+			businessRepository.saveAll(List.of(biz1, biz2));
+
+
+
+			//favorites logic
+
+			List<Local> locals = localRepository.findAll();
+			List<Business> businesses = businessRepository.findAll();
+
+			//George Bush and Anna's Coffee
+			System.out.println("Locals: " + locals.get(0).getFirstName() + " " + locals.get(0).getLastName());
+			System.out.println("Businesses: " + businesses.get(0).getBusinessName());
+
+			if (!locals.isEmpty() && !businesses.isEmpty()) {
+				// Create a few favorites (each local adds a business to favorites)
+				Favorites favorite1 = new Favorites();
+				favorite1.setLocalUser(locals.get(0));
+				favorite1.setBusiness(businesses.get(0));
+
+
+
+				favoritesRepository.save(favorite1);
+			}
+
 		};
 	}
-
 
 }

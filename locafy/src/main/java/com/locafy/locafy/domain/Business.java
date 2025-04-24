@@ -39,7 +39,8 @@ public class Business {
 
     // Foreign key: Many businesses to one owner
 
-    @ManyToOne
+    @ManyToOne  // so one owner can have many businesses.
+                //many businesses can have only one owner
     @JoinColumn(name = "owner_id", nullable = false)
     private BusinessOwner owner;
 
