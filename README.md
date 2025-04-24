@@ -25,4 +25,4 @@ to different user roles: business owners, customers, and administrators.
 here is our balsamic mockup: [balsamic link](https://balsamiq.cloud/strku7p/plt70x8)
 
 ## Database diagram website:
-here is our diagram of the database: [diagram_link](https://dbdiagram.io/d/WP2_project-6807dc061ca52373f5ee6378)
+here is our diagram of the database: [diagram_link](https://dbdiagram.io/d/680a1db21ca52373f530a5d1)
