@@ -1,5 +1,9 @@
 package com.locafy.locafy;
 
+import com.locafy.locafy.domain.BusinessOwner;
+import com.locafy.locafy.domain.Local;
+import com.locafy.locafy.repositories.BusinessOwnerRepository;
+import com.locafy.locafy.repositories.LocalRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,7 +16,7 @@ public class LocafyApplication {
 		SpringApplication.run(LocafyApplication.class, args);
 	}
 	@Bean
-	CommandLineRunner commandLineRunner (LocalRepository repository) {
+	CommandLineRunner commandLineRunner (LocalRepository localRepository) {
 		return args -> {
 			Local local1 = new Local(
 					"george123",
@@ -36,9 +40,37 @@ public class LocafyApplication {
 
 
 
-			repository.save(local1);
-			repository.save(local2);
+			localRepository.save(local1);
+			localRepository.save(local2);
+
 
 		};
 	}
+
+	@Bean
+	CommandLineRunner businessOwnerRunner(BusinessOwnerRepository businessOwnerRepository) {
+		return args -> {
+			BusinessOwner owner1 = new BusinessOwner();
+			owner1.setUsername("biz123");
+			owner1.setPassword("pass123");
+			owner1.setFisrtName("John");
+			owner1.setLastName("Doe");
+			owner1.setEmail("john@example.com");
+			owner1.setPhoneNumber("+40 700 000 000");
+			owner1.setAddress("Timisoara, str. Libertatii, nr. 10");
+
+			BusinessOwner owner2 = new BusinessOwner();
+			owner2.setUsername("startupgirl");
+			owner2.setPassword("securepass");
+			owner2.setFisrtName("Ana");
+			owner2.setLastName("Popescu");
+			owner2.setEmail("ana@startup.ro");
+			owner2.setPhoneNumber("+40 711 222 333");
+			owner2.setAddress("Cluj, str. Observatorului, nr. 15");
+
+			businessOwnerRepository.save(owner1);
+			businessOwnerRepository.save(owner2);
+		};
+	}
+
 }
