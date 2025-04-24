@@ -1,5 +1,6 @@
 package com.locafy.locafy.domain;
 
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,26 +8,33 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class Favorites {
+public class Reviews {
 
     @Id
     @SequenceGenerator(
-            name = "favorites_sequence",
-            sequenceName = "favorites_sequence",
+            name = "reviews_seq",
+            sequenceName = "reviews_seq",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "favorites_sequence"
+            generator = "reviews_seq"
     )
     @Column(updatable = false)
     private long id;
 
-    @ManyToOne  //so one business can be added to favorites by multiple users
-    @JoinColumn(name = "business_id", nullable = false)
-    private Business business;
+    @Column( columnDefinition = "Text")
+    private String message;
+
+    @Column(nullable = false)
+    private double stars;
 
     @ManyToOne
     @JoinColumn(name = "local_user_id", nullable = false)
-    private Local localUser;
+    private Local local;
+
+    @ManyToOne
+    @JoinColumn(name = "business_id", nullable = false)
+    private Business business;
+
 }

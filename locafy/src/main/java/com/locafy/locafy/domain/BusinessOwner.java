@@ -18,7 +18,6 @@ public class BusinessOwner {
             strategy = GenerationType.SEQUENCE,
             generator = "business_owner_seq"
     )
-
     @Column(name = "id", updatable = false)
     private long id;
 

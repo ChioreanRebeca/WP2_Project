@@ -19,19 +19,22 @@ public class Business {
             sequenceName = "business_seq",
             allocationSize = 1
     )
+    @Column(updatable = false)
     private long id;
 
-    @Column(nullable=false)
+    @Column(nullable=false, columnDefinition = "Text")
     private String businessName;
 
-    @Column(nullable=false, unique=true)
+    @Column(nullable=false, unique=true, columnDefinition = "Text")
     private String phoneNumber;
 
-    @Column(nullable=false, unique=true)
+    @Column(nullable=false, unique=true, columnDefinition = "Text")
     private String email;
+
+    @Column(columnDefinition = "Text")
     private String address;
 
-    @Column(unique=true)
+    @Column(unique=true, columnDefinition = "Text")
     private String website;
 
     @Lob

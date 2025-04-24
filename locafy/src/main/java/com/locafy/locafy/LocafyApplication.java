@@ -1,13 +1,7 @@
 package com.locafy.locafy;
 
-import com.locafy.locafy.domain.Business;
-import com.locafy.locafy.domain.BusinessOwner;
-import com.locafy.locafy.domain.Favorites;
-import com.locafy.locafy.domain.Local;
-import com.locafy.locafy.repositories.BusinessOwnerRepository;
-import com.locafy.locafy.repositories.BusinessRepository;
-import com.locafy.locafy.repositories.FavoritesRepository;
-import com.locafy.locafy.repositories.LocalRepository;
+import com.locafy.locafy.domain.*;
+import com.locafy.locafy.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,8 +16,12 @@ public class LocafyApplication {
 		SpringApplication.run(LocafyApplication.class, args);
 	}
 	@Bean
-	CommandLineRunner commandLineRunner (LocalRepository localRepository, BusinessRepository businessRepository, FavoritesRepository favoritesRepository,BusinessOwnerRepository businessOwnerRepository) {
+	CommandLineRunner commandLineRunner (LocalRepository localRepository, BusinessRepository businessRepository,
+										 FavoritesRepository favoritesRepository, BusinessOwnerRepository businessOwnerRepository,
+										 ReviewsRepository reviewsRepository) {
 		return args -> {
+
+			/// locals logic
 			Local local1 = new Local(
 					"george123",
 					"george123@gmail.com",
@@ -50,8 +48,7 @@ public class LocafyApplication {
 			localRepository.save(local2);
 
 
-			//business owner logic
-
+			///business owner logic
 			BusinessOwner owner1 = new BusinessOwner();
 			owner1.setUsername("biz123");
 			owner1.setPassword("pass123");
@@ -74,8 +71,7 @@ public class LocafyApplication {
 			businessOwnerRepository.save(owner2);
 
 
-			//business logic
-
+			///business logic
 			BusinessOwner owner = new BusinessOwner();
 			owner.setUsername("ceoAnna");
 			owner.setFisrtName("Anna");
@@ -105,24 +101,31 @@ public class LocafyApplication {
 
 
 
-			//favorites logic
-
+			//George Bush and Anna's Coffee
 			List<Local> locals = localRepository.findAll();
 			List<Business> businesses = businessRepository.findAll();
-
-			//George Bush and Anna's Coffee
 			System.out.println("Locals: " + locals.get(0).getFirstName() + " " + locals.get(0).getLastName());
 			System.out.println("Businesses: " + businesses.get(0).getBusinessName());
 
+
+
+			///favorites logic
 			if (!locals.isEmpty() && !businesses.isEmpty()) {
-				// Create a few favorites (each local adds a business to favorites)
 				Favorites favorite1 = new Favorites();
 				favorite1.setLocalUser(locals.get(0));
 				favorite1.setBusiness(businesses.get(0));
-
-
-
 				favoritesRepository.save(favorite1);
+			}
+
+			///review logic
+			if (!locals.isEmpty() && !businesses.isEmpty()) {
+				Reviews review = new Reviews();
+				review.setMessage("Great service and friendly staff! Loved Anna's Coffee!");
+				review.setStars(4.5);
+				review.setLocal(locals.get(0));
+				review.setBusiness(businesses.get(0));
+
+				reviewsRepository.save(review);
 			}
 
 		};
