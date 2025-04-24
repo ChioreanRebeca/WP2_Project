@@ -43,4 +43,14 @@ public class BusinessOwner {
     @Column(nullable = false, columnDefinition = "Text")
     private String address;
 
+    BusinessOwner(String username, String password, String firstName, String lastName, String email, String phoneNumber, String address) {
+        this.username = username;
+        this.password = password;
+        this.fisrtName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
+
 }

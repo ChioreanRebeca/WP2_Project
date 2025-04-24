@@ -1,13 +1,17 @@
 package com.locafy.locafy;
 
+import com.locafy.locafy.domain.Business;
 import com.locafy.locafy.domain.BusinessOwner;
 import com.locafy.locafy.domain.Local;
 import com.locafy.locafy.repositories.BusinessOwnerRepository;
+import com.locafy.locafy.repositories.BusinessRepository;
 import com.locafy.locafy.repositories.LocalRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.util.List;
 
 @SpringBootApplication
 public class LocafyApplication {
@@ -72,5 +76,38 @@ public class LocafyApplication {
 			businessOwnerRepository.save(owner2);
 		};
 	}
+
+	@Bean
+	CommandLineRunner loadData(BusinessOwnerRepository ownerRepo, BusinessRepository businessRepo) {
+		return args -> {
+			BusinessOwner owner = new BusinessOwner();
+			owner.setUsername("ceoAnna");
+			owner.setFisrtName("Anna");
+			owner.setLastName("Ionescu");
+			owner.setEmail("anna@startup.ro");
+			owner.setPhoneNumber("+40 700 111 222");
+			owner.setPassword("safePass123");
+			owner.setAddress("Cluj, str. Observatorului, nr. 15");
+
+			BusinessOwner savedOwner = ownerRepo.save(owner);
+
+			Business biz1 = new Business();
+			biz1.setBusinessName("Anna’s Coffee");
+			biz1.setPhoneNumber("+40 711 123 456");
+			biz1.setEmail("coffee@anna.ro");
+			biz1.setWebsite("www.annascoffee.ro");
+			biz1.setOwner(savedOwner);
+
+			Business biz2 = new Business();
+			biz2.setBusinessName("Anna’s Bakery");
+			biz2.setPhoneNumber("+40 711 999 888");
+			biz2.setEmail("bakery@anna.ro");
+			biz2.setWebsite("www.annasbakery.ro");
+			biz2.setOwner(savedOwner);
+
+			businessRepo.saveAll(List.of(biz1, biz2));
+		};
+	}
+
 
 }
