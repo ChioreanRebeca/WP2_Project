@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Locals</title>
 </head>
 <body>
-
+<div th:replace="fragments/general :: top"></div>
+<a th:href="@{/}" class="btn btn-primary">Go to home page</a>
 </body>
 </html>

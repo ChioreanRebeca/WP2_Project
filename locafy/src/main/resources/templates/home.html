@@ -4,19 +4,20 @@
     <title>Home</title>
 </head>
 <body>
+<div th:replace="fragments/general :: top"></div>
 <h2>Home Page</h2>
 <p>Hello and welcome to Locafy, a place where you can fnd local produce and services
     and where you can help your local business grow!</p>
-<p>If you are looking to help your busineess grow
-    you can see more details on what we ofer
+<p>If you are looking to help your business grow
+    you can see more details on what we offer
     by clicking the link below!
 </p>
-<button>Go to business page</button>
+<a th:href="@{/business}" class="btn btn-primary">Go to business page</a>
 
 <p>If you are someone who is looking to purchase
     and support local businesses click the link
     for more information.</p>
-<button>Go to locals page</button>
+<a th:href="@{/locals}" class="btn btn-primary">Go to locals page</a>
 </body>
 
 </html>
