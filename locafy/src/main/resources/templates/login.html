@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up - Locafy</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<!-- Include header fragment -->
+<div th:replace="fragments/general :: header"></div>
+
+<main class="signup-page">
+    <section class="signup-form-section">
+        <h1>Login!</h1>
+        <p>
+            For More Information please Feel Free To Drop Us An Email. Our Staff Always Be There To Help You Out. Do Not Hesitate!
+        </p>
+
+        <form action="#" method="post" class="signup-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="****" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="primary-btn">Submit</button>
+            </div>
+
+            <p class="login-link">
+                Don't have an account? <a th:href="@{/signup}">Sign up!</a>
+            </p>
+        </form>
+    </section>
+</main>
+
+<!-- Include footer fragment -->
+<div th:replace="fragments/general :: footer"></div>
+
+</body>
+</html>

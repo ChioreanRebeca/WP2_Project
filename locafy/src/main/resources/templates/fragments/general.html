@@ -1,6 +1,58 @@
-<div th:fragment="top">
-  <div class="header">
-<!--    <img  th:src="@{/images/companyLogo.jpg}" width="100px"  />-->
-    <span class="header-text">COMPANY NAME</span>
-  </div>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments</title>
+</head>
+<body>
+<div th:fragment="header">
+    <header class="site-header">
+        <div class="logo">Locafy</div>
+        <nav class="main-nav">
+            <ul>
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a href="#">How it Works</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-buttons">
+            <a href="/signup" class="secondary-btn">Sign Up</a>
+            <a href="/login" class="primary-btn">Login</a>
+        </div>
+    </header>
 </div>
+
+<div th:fragment="footer">
+    <footer class="site-footer">
+        <div class="footer-links">
+            <div class="footer-column">
+                <h4>Locafy</h4>
+                <ul>
+                    <li><a th:href="@{/}">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Newsletter</a></li>
+                    <li><a href="#">Guidelines</a></li>
+                    <li><a href="#">Customer Help</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>2025 Locafy. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><img th:src="@{/images/Facebook.svg}" alt="Facebook"></a>
+                <a href="#"><img th:src="@{/images/Twitter.svg}" alt="Twitter"></a>
+                <a href="#"><img th:src="@{/images/Instagram.svg}" alt="Instagram"></a>
+                <a href="#"><img th:src="@{/images/LinkedIn.svg}" alt="Instagram"></a>
+            </div>
+        </div>
+    </footer>
+</div>
+</body>
+</html>

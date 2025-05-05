@@ -1,23 +1,71 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Home</title>
+    <meta charset="UTF-8">
+    <title>Locafy - Discover Local Businesses</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<div th:replace="fragments/general :: top"></div>
-<h2>Home Page</h2>
-<p>Hello and welcome to Locafy, a place where you can fnd local produce and services
-    and where you can help your local business grow!</p>
-<p>If you are looking to help your business grow
-    you can see more details on what we offer
-    by clicking the link below!
-</p>
-<a th:href="@{/business}" class="btn btn-primary">Go to business page</a>
 
-<p>If you are someone who is looking to purchase
-    and support local businesses click the link
-    for more information.</p>
-<a th:href="@{/locals}" class="btn btn-primary">Go to locals page</a>
+<!-- Include header fragment -->
+<div th:replace="fragments/general :: header"></div>
+
+<main class="main-content">
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Your go-to hub for discovering local businesses</h1>
+            <p>Connect to services in your local area: reliable, affordable, and trusted.</p>
+            <button class="primary-btn">Discover now</button>
+        </div>
+        <div class="hero-image">
+            <img th:src="@{/images/image1.png}" alt="Aerial view of local businesses">
+        </div>
+    </section>
+
+    <section class="help-local">
+        <h2>Help local businesses</h2>
+        <div class="cards">
+            <div class="card">
+                <img th:src="@{/images/image2.png}" alt="Shop local">
+                <h3>Shop Local</h3>
+                <p>Support the businesses that shape your community.</p>
+            </div>
+            <div class="card">
+                <img th:src="@{/images/image3.png}" alt="Leave reviews">
+                <h3>Leave Reviews</h3>
+                <p>Help others make informed decisions by sharing your experience.</p>
+            </div>
+            <div class="card">
+                <img th:src="@{/images/image4.png}" alt="Connect directly">
+                <h3>Connect Directly</h3>
+                <p>Reach out to business owners with confidence and ease.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial">
+        <blockquote>
+            “Locafy helped me find a reliable contractor for my home renovation in just minutes. The reviews made it easy to choose with confidence.”
+            <footer>- George C.</footer>
+        </blockquote>
+    </section>
+
+    <section class="discover">
+        <h2>Easily discover, compare, and contact local businesses—all in one place.</h2>
+        <img th:src="@{/images/image6.png}" alt="Farmers market scene">
+    </section>
+
+    <section class="testimonial owner">
+        <blockquote>
+            “As a small business owner, Locafy has been a game-changer. I’ve gained new customers and built stronger relationships within my community.”
+            <footer>- Isabella R., Florist & Grower</footer>
+        </blockquote>
+    </section>
+</main>
+
+<!-- Include footer fragment -->
+<div th:replace="fragments/general :: footer"></div>
+
 </body>
-
 </html>
+
