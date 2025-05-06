@@ -26,3 +26,6 @@ here is our balsamic mockup: [balsamic link](https://balsamiq.cloud/strku7p/plt7
 
 ## Database diagram website:
 here is our diagram of the database: [diagram_link](https://dbdiagram.io/d/680a1db21ca52373f530a5d1)
+
+## Website in figma:
+here is our website in figma: https://www.figma.com/design/Lk25MH8T5x6rCzSGHYFJy4/WP2-project?node-id=0-1&t=ErG4QUEFzjSSfiJn-1
