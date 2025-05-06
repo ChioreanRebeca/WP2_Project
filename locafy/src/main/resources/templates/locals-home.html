@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Locals Home</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="fragments/general :: header-login"></div>
+
+<main class="main-content">
+    <section class="local-businesses">
+        <h2>Local businesses</h2>
+        <div class="business-listing">
+            <div class="business-card">
+                <img src="/images/strawberries.jpg" alt="Strawberry Business">
+                <div class="business-info">
+                    <h3>Strawberry Business</h3>
+                    <p>Business Owner: Maricica Danila</p>
+                    <button class="primary-btn small-btn">Add to fav ✓</button>
+                </div>
+                <a href="#" class="details-link">Details</a>
+            </div>
+
+            <div class="business-card">
+                <img src="/images/plumbing.jpg" alt="Plumbing">
+                <div class="business-info">
+                    <h3>Plumbing</h3>
+                    <p>Business Owner: Marcel Paul</p>
+                    <button class="primary-btn small-btn">Add to fav ✓</button>
+                </div>
+                <a href="#" class="details-link">Details</a>
+            </div>
+
+            <div class="business-card">
+                <img src="/images/cabage.jpg" alt="Cabbage Business">
+                <div class="business-info">
+                    <h3>Cabbage Business</h3>
+                    <p>Business Owner: Alex Popescu</p>
+                    <button class="primary-btn small-btn">Add to fav ✓</button>
+                </div>
+                <a href="#" class="details-link">Details</a>
+            </div>
+
+            <div class="business-card">
+                <img src="/images/farm.png" alt="Fruit Business">
+                <div class="business-info">
+                    <h3>Fruit Business</h3>
+                    <p>Business Owner: Andrei Alex</p>
+                    <button class="primary-btn small-btn">Add to fav ✓</button>
+                </div>
+                <a href="#" class="details-link">Details</a>
+            </div>
+        </div>
+
+        <aside class="profile-card">
+            <img src="/images/sample-profile-picture.png" alt="Aline Manderi">
+            <h4>Aline Manderi</h4>
+        </aside>
+    </section>
+</main>
+
+<div th:replace="fragments/general :: footer"></div>
+</body>
+</html>

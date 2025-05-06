@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <title>Locafy - Discover Local Businesses</title>
@@ -8,7 +9,8 @@
 <body>
 
 <!-- Include header fragment -->
-<div th:replace="fragments/general :: header"></div>
+<div sec:authorize="isAuthenticated()" th:replace="fragments/general :: header-login"></div>
+<div sec:authorize="isAnonymous()" th:replace="fragments/general :: header"></div>
 
 <main class="main-content">
     <section class="hero">
