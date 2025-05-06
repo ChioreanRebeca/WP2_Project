@@ -514,3 +514,51 @@ img {
 .delete-btn:hover {
     background-color: #c95252;
 }
+
+/* Map content */
+.main-content {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+.hero {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+.hero-text {
+    flex: 1;
+}
+.hero-image {
+    flex: 1;
+}
+.help-local {
+    background-color: #e0f2f1;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 3rem;
+}
+.cards {
+    display: flex;
+    gap: 1rem;
+}
+.card {
+    flex: 1;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+.testimonial, .testimonial.owner {
+    margin: 2rem 0;
+    padding: 2rem;
+    background-color: #fff;
+    border-left: 5px solid #26a69a;
+    font-style: italic;
+}
+.discover img {
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
