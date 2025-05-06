@@ -9,4 +9,14 @@ public class LocalsController {
     public String localsHomePage() {
         return "locals-home";
     }
+
+    @GetMapping("/local-profile")
+    public String localProfilePage() {
+        return "local-profile";
+    }
+
+    @GetMapping("/favorites")
+    public String FavoritesPage() {
+        return "favorites";
+    }
 }

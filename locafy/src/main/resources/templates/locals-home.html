@@ -2,64 +2,87 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Locals Home</title>
+    <title>Local Businesses</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
+
+<!-- Header -->
 <div th:replace="fragments/general :: header-login"></div>
 
-<main class="main-content">
-    <section class="local-businesses">
-        <h2>Local businesses</h2>
-        <div class="business-listing">
+<main class="local-main-content">
+    <section class="local-container">
+        <div class="local-list">
+            <h2>Local businesses</h2>
+
+            <!-- Business Card -->
             <div class="business-card">
-                <img src="/images/strawberries.jpg" alt="Strawberry Business">
+                <img th:src="@{/images/strawberries.jpg}" alt="Strawberry Business">
                 <div class="business-info">
-                    <h3>Strawberry Business</h3>
-                    <p>Business Owner: Maricica Danila</p>
-                    <button class="primary-btn small-btn">Add to fav ✓</button>
+                    <p><strong>Strawberry Business</strong></p>
+                    <p class="owner">Business Owner: <span>Maricica Danila</span></p>
                 </div>
-                <a href="#" class="details-link">Details</a>
+                <div class="business-actions">
+                    <a href="#" class="details-link">Details</a>
+                    <button class="fav-btn">Add to fav ✓</button>
+                </div>
             </div>
 
             <div class="business-card">
-                <img src="/images/plumbing.jpg" alt="Plumbing">
+                <img th:src="@{/images/plumbing.jpg}" alt="Plumbing">
                 <div class="business-info">
-                    <h3>Plumbing</h3>
-                    <p>Business Owner: Marcel Paul</p>
-                    <button class="primary-btn small-btn">Add to fav ✓</button>
+                    <p><strong>Plumbing</strong></p>
+                    <p class="owner">Business Owner: <span>Marcel Paul</span></p>
                 </div>
-                <a href="#" class="details-link">Details</a>
+                <div class="business-actions">
+                    <a href="#" class="details-link">Details</a>
+                    <button class="fav-btn">Add to fav ✓</button>
+                </div>
             </div>
 
             <div class="business-card">
-                <img src="/images/cabage.jpg" alt="Cabbage Business">
+                <img th:src="@{/images/cabage.jpg}" alt="Cabbage Business">
                 <div class="business-info">
-                    <h3>Cabbage Business</h3>
-                    <p>Business Owner: Alex Popescu</p>
-                    <button class="primary-btn small-btn">Add to fav ✓</button>
+                    <p><strong>Cabbage Business</strong></p>
+                    <p class="owner">Business Owner: <span>Alex Popescu</span></p>
                 </div>
-                <a href="#" class="details-link">Details</a>
+                <div class="business-actions">
+                    <a href="#" class="details-link">Details</a>
+                    <button class="fav-btn">Add to fav ✓</button>
+                </div>
             </div>
 
             <div class="business-card">
-                <img src="/images/farm.png" alt="Fruit Business">
+                <img th:src="@{/images/farm.png}" alt="Fruit Business">
                 <div class="business-info">
-                    <h3>Fruit Business</h3>
-                    <p>Business Owner: Andrei Alex</p>
-                    <button class="primary-btn small-btn">Add to fav ✓</button>
+                    <p><strong>Fruit Business</strong></p>
+                    <p class="owner">Business Owner: <span>Andrei Alex</span></p>
                 </div>
-                <a href="#" class="details-link">Details</a>
+                <div class="business-actions">
+                    <a href="#" class="details-link">Details</a>
+                    <button class="fav-btn">Add to fav ✓</button>
+                </div>
             </div>
         </div>
 
-        <aside class="profile-card">
-            <img src="/images/sample-profile-picture.png" alt="Aline Manderi">
-            <h4>Aline Manderi</h4>
+        <aside class="profile-sidebar">
+            <a th:href="@{/local-profile}">
+            <div class="profile-card">
+                <img th:src="@{/images/sample-profile-picture.png}" alt="Profile Picture">
+                <p class="profile-name">Aline Manderi</p>
+            </div>
+            </a>
+            <a th:href="@{/favorites}">
+            <div class="favourites-box">
+                <p>Your favourites</p>
+            </div>
+            </a>
         </aside>
     </section>
 </main>
 
+<!-- Footer -->
 <div th:replace="fragments/general :: footer"></div>
+
 </body>
 </html>

@@ -1,10 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Local Profile</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
+
+<!-- Header -->
+<div th:replace="fragments/general :: header-login"></div>
+
+<main class="profile-main-content">
+    <section class="profile-container">
+        <div class="profile-header">
+            <div>
+                <h2>Customer</h2>
+                <h1>Aline Manderi</h1>
+            </div>
+            <img th:src="@{/images/sample-profile-picture.png}" alt="Profile Image">
+        </div>
+
+        <form class="profile-form">
+            <div class="profile-form-section">
+                <label>Full Name</label>
+                <input type="text" value="Aline Manderi" readonly>
+
+                <label>Email Address</label>
+                <input type="email" value="alinemandersonn@gmail.com" readonly>
+
+                <label>Date of Birth</label>
+                <input type="text" value="01/01/2003" readonly>
+
+                <label>Gender</label>
+                <div class="gender-radio">
+                    <label><input type="radio" name="gender" checked disabled> Male</label>
+                    <label><input type="radio" name="gender" disabled> Female</label>
+                </div>
+            </div>
+
+            <div class="profile-form-section">
+                <label>Contact Number</label>
+                <input type="text" value="+447802808287" readonly>
+
+                <label>Title</label>
+                <input type="text" value="Customer" readonly>
+
+                <label>About Me</label>
+                <textarea readonly></textarea>
+            </div>
+
+            <div class="profile-save">
+                <a th:href="@{/locals-home}">
+                <button type="button" class="save-btn">Save</button>
+                </a>
+            </div>
+        </form>
+    </section>
+</main>
+
+<!-- Footer -->
+<div th:replace="fragments/general :: footer"></div>
 
 </body>
 </html>

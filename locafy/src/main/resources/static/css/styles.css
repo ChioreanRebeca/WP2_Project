@@ -219,72 +219,298 @@ img {
     color: #26a69a;
 }
 
-/* Local businesses section */
-.local-businesses {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
+/* Local Businesses Page */
+.local-main-content {
+    background-color: #d8e3dc;
+    padding: 2rem;
 }
 
-.business-listing {
-    flex: 3;
+.local-container {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 2rem;
+}
+
+.local-list {
+    flex: 3;
+}
+
+.local-list h2 {
+    color: #2e7d32;
+    margin-bottom: 1.5rem;
 }
 
 .business-card {
     display: flex;
     align-items: center;
     background-color: white;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    justify-content: space-between;
 }
 
 .business-card img {
-    width: 80px;
-    height: 80px;
-    border-radius: 8px;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
+    margin-right: 1rem;
+    border-radius: 8px;
 }
 
 .business-info {
+    flex: 2;
+}
+
+.owner span {
+    color: #2e7d32;
+}
+
+.business-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
     flex: 1;
-    margin-left: 1rem;
 }
 
 .details-link {
-    margin-left: 1rem;
+    color: #004d40;
+    font-weight: bold;
     font-size: 0.9rem;
-    color: #26a69a;
 }
 
-.primary-btn.small-btn {
-    padding: 0.3rem 0.6rem;
+.fav-btn {
+    background-color: white;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 0.3rem 0.7rem;
     font-size: 0.8rem;
+    cursor: pointer;
 }
 
-/* Profile card */
-.profile-card {
+.profile-sidebar {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile-card {
     background-color: white;
     padding: 1rem;
-    border-radius: 8px;
+    border-radius: 10px;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    max-width: 200px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .profile-card img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 0.5rem;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-.profile-card h4 {
+.profile-name {
     margin-top: 0.5rem;
-    font-size: 1rem;
     font-weight: bold;
+}
+
+.favourites-box {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Profile Page */
+.profile-main-content {
+    background-color: #1e2722;
+    padding: 3rem 2rem;
+    color: #000;
+}
+
+.profile-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #d8e3dc;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.profile-header h2 {
+    color: #2e7d32;
+    margin: 0;
+}
+
+.profile-header h1 {
+    font-size: 2rem;
+    margin-top: 0.5rem;
+}
+
+.profile-header img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.profile-form {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 0 0 8px 8px;
+    gap: 2rem;
+}
+
+.profile-form-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.profile-form label {
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+.profile-form input,
+.profile-form textarea {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    resize: none;
+}
+
+.gender-radio {
+    display: flex;
+    gap: 1rem;
+    padding-top: 0.5rem;
+}
+
+.profile-save {
+    width: 100%;
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.save-btn {
+    background-color: #b370f0;
+    color: white;
+    border: none;
+    padding: 0.6rem 2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* Favorites Page */
+.favorites-section {
+    padding: 40px;
+    background-color: #dfe7de;
+    min-height: 60vh;
+}
+
+.favorites-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.no-favorites {
+    font-size: 18px;
+    color: #333;
+    margin-top: 20px;
+}
+
+.no-favorites a {
+    color: #5c8f45;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.favorites-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.favorite-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f6f8f2;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.favorite-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.favorite-info {
+    flex: 1;
+}
+
+.favorite-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.favorite-owner {
+    font-size: 15px;
+    color: #4b8749;
+}
+
+.favorite-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.favorite-actions a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.delete-btn {
+    background-color: #e46767;
+    color: white;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.delete-btn:hover {
+    background-color: #c95252;
 }
