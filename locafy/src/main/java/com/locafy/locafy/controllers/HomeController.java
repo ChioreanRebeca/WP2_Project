@@ -10,4 +10,14 @@ public class HomeController {
     public String home() {
         return "home"; // maps to home.html in /templates
     }
+
+    @GetMapping("/map")
+    public String MapPage() {
+        return "map";
+    }
+
+    @GetMapping("/contact")
+    public String ContactPage() {
+        return "contact";
+    }
 }

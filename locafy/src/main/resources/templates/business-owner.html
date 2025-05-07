@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Favorites</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<!-- Header Fragment -->
+<div th:replace="fragments/general :: header-login"></div>
+<p>This is equivalent to local favorites</p>
+<main class="favorites-section">
+    <!-- Profile Card -->
+    <div class="profile-card">
+        <a th:href="@{/local-profile}">
+            <img th:src="@{/images/sample-profile-picture.png}" alt="Profile Picture">
+        </a>
+        <p class="profile-name">Aline Manderi</p>
+    </div>
+
+    <h1 class="favorites-title">Your Favorites</h1>
+
+    <!-- No Favorites Message -->
+    <div th:if="${#lists.isEmpty(favorites)}" class="no-favorites">
+        <p>You have no favorites yet.
+            <a th:href="@{/local-businesses}">Go to local businesses</a> and select a few businesses.
+        </p>
+    </div>
+
+    <!-- Favorites List -->
+    <div th:if="${!#lists.isEmpty(favorites)}" class="favorites-list">
+        <div th:each="favorite : ${favorites}" class="favorite-card">
+            <img th:src="@{${favorite.imagePath}}" alt="Business Image" class="favorite-image">
+
+            <div class="favorite-info">
+                <p class="favorite-title" th:text="${favorite.name}">Business Name</p>
+                <p class="favorite-owner">
+                    Business Owner: <span th:text="${favorite.owner}">Owner Name</span>
+                </p>
+            </div>
+
+            <div class="favorite-actions">
+                <a th:href="@{/business/{id}(id=${favorite.id})}">Details</a>
+                <button class="delete-btn"
+                        th:attr="data-id=${favorite.id}"
+                        onclick="deleteFavorite(this)">
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer Fragment -->
+<div th:replace="fragments/general :: footer"></div>
+
+<script>
+    function deleteFavorite(button) {
+        const id = button.getAttribute('data-id');
+        // Insert AJAX call or form submission logic here to delete favorite
+        alert('Delete request sent for favorite ID: ' + id);
+    }
+</script>
+
+</body>
+</html>

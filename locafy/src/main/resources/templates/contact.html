@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<!-- Include header fragment -->
+<div sec:authorize="isAuthenticated()" th:replace="fragments/general :: header-login"></div>
+<div sec:authorize="isAnonymous()" th:replace="fragments/general :: header"></div>
+
+<p>This is the contact us page</p>
+
+<!-- Include footer fragment -->
+<div th:replace="fragments/general :: footer"></div>
+
+</body>
+</html>

@@ -19,9 +19,4 @@ public class LocalsController {
     public String FavoritesPage() {
         return "favorites";
     }
-
-    @GetMapping("/map")
-    public String MapPage() {
-        return "map";
-    }
 }

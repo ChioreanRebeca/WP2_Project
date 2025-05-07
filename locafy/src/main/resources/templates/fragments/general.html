@@ -12,9 +12,7 @@
         </a>
         <nav class="main-nav">
             <ul>
-                <li><a href="/map">Map</a></li>
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Contact us</a></li>
+                <li><a th:href="@{/contact}">Contact us</a></li>
             </ul>
         </nav>
         <div class="header-buttons">
@@ -24,25 +22,33 @@
     </header>
 </div>
 
-<div th:fragment="header-login">
+<div th:fragment="header-login"
+     xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <header class="site-header">
         <a th:href="@{/}">
             <div class="logo">Locafy</div>
         </a>
         <nav class="main-nav">
             <ul>
-                <li><a href="#">Local businesses</a></li>
-                <li><a href="/map">Map</a></li>
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Contact us</a></li>
-                <li><a href="#">Your profile</a></li>
+                <li>
+                    <a sec:authorize="hasRole('LOCAL')" th:href="@{/locals-home}">Local businesses</a>
+                    <a sec:authorize="hasRole('BUSINESS_OWNER')" th:href="@{business-owner-home}">Local businesses</a>
+                </li>
+                <li><a th:href="@{/map}">Map</a></li>
+                <li><a th:href="@{/contact}">Contact us</a></li>
+                <li>
+                    <a sec:authorize="hasRole('LOCAL')" th:href="@{local-profile}">Your profile</a>
+                    <a sec:authorize="hasRole('BUSINESS_OWNER')" th:href="@{business-owner-profile}">Your profile</a>
+                </li>
             </ul>
         </nav>
         <div class="header-buttons">
-            <a th:href="@{/}" class="secondary-btn">Sign Out</a>
+            <a th:href="@{/logout}" class="secondary-btn">Sign Out</a>
         </div>
     </header>
 </div>
+
 
 <div th:fragment="footer">
     <footer class="site-footer">

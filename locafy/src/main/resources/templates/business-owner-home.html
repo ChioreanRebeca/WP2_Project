@@ -24,9 +24,6 @@
                     </p>
                     <p class="owner">Business Owner: <span>Maricica Danila</span></p>
                 </div>
-                <div class="business-actions">
-                    <button class="fav-btn">Add to fav ✓</button>
-                </div>
             </div>
 
             <div class="business-card">
@@ -36,9 +33,6 @@
                         <a href="#"><strong>Plumbing</strong></a>
                     </p>
                     <p class="owner">Business Owner: <span>Marcel Paul</span></p>
-                </div>
-                <div class="business-actions">
-                    <button class="fav-btn">Add to fav ✓</button>
                 </div>
             </div>
 
@@ -50,9 +44,6 @@
                     </p>
                     <p class="owner">Business Owner: <span>Alex Popescu</span></p>
                 </div>
-                <div class="business-actions">
-                    <button class="fav-btn">Add to fav ✓</button>
-                </div>
             </div>
 
             <div class="business-card">
@@ -63,23 +54,20 @@
                     </p>
                     <p class="owner">Business Owner: <span>Andrei Alex</span></p>
                 </div>
-                <div class="business-actions">
-                    <button class="fav-btn">Add to fav ✓</button>
-                </div>
             </div>
         </div>
 
         <aside class="profile-sidebar">
             <a th:href="@{/local-profile}">
-            <div class="profile-card">
-                <img th:src="@{/images/sample-profile-picture.png}" alt="Profile Picture">
-                <p class="profile-name">Aline Manderi</p>
-            </div>
+                <div class="profile-card">
+                    <img th:src="@{/images/sample-profile-picture.png}" alt="Profile Picture">
+                    <p class="profile-name">Business Owner</p>
+                </div>
             </a>
-            <a th:href="@{/favorites}">
-            <div class="favourites-box">
-                <p>Your favourites</p>
-            </div>
+            <a th:href="@{/business-owner}"> <!-- Equivalent to favorites for local -->
+                <div class="favourites-box">
+                    <p>Your businesses</p>
+                </div>
             </a>
         </aside>
     </section>
