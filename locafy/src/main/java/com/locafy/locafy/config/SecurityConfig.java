@@ -32,6 +32,10 @@ public class SecurityConfig {
                         .permitAll()
                 )
                 .logout(logout -> logout
+                        .logoutUrl("/logout")              // <--- this is the URL Spring Security listens on
+                        .logoutSuccessUrl("/")            // <--- after logout, redirect to home page
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
                         .permitAll()
                 );
 
