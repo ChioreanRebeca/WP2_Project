@@ -2,7 +2,12 @@ package com.locafy.locafy.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "Local") //this makes a table
 @Data //this creates automatically getters and setters and toString and equals functions
@@ -42,6 +47,13 @@ public class Local {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String address;
 
+    @Getter
+    @Setter
+    @ElementCollection(fetch = FetchType.EAGER)  // To load roles eagerly from the database
+    @CollectionTable(name = "local_roles", joinColumns = @JoinColumn(name = "local_id"))
+    @Column(name = "role")
+    private Set<String> roles = new HashSet<>();  // Store roles as strings
+
 public Local( String userName, String email, String password, String firstName, String lastName, String phoneNumber, String address) {
 
     this.userName = userName;
@@ -53,6 +65,4 @@ public Local( String userName, String email, String password, String firstName, 
     this.address = address;
 
 }
-
-
 }

@@ -36,6 +36,7 @@ public class SecurityConfig {
                         .logoutSuccessUrl("/")            // <--- after logout, redirect to home page
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
+                        .deleteCookies("JSESSIONID")
                         .permitAll()
                 );
 
