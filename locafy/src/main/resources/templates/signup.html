@@ -7,7 +7,6 @@
 </head>
 <body>
 
-<!-- Include header fragment -->
 <div th:replace="fragments/general :: header"></div>
 
 <main class="signup-page">
@@ -18,44 +17,45 @@
             Our staff is always here to help you out. Do not hesitate!
         </p>
 
-        <form action="#" method="post" class="signup-form">
+        <!-- BIND form to Local object -->
+        <form th:action="@{/signup}" th:object="${local}" method="post" class="signup-form">
             <div class="form-row">
                 <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" placeholder="Abc" required>
+                    <label for="userName">Username</label>
+                    <input type="text" th:field="*{userName}" id="userName" placeholder="Abc" required>
                 </div>
                 <div class="form-group">
-                    <label for="lastname">Last Name</label>
-                    <input type="text" id="lastname" name="lastname" placeholder="Abc" required>
+                    <label for="lastName">Last Name</label>
+                    <input type="text" th:field="*{lastName}" id="lastName" placeholder="Abc" required>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
                     <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="Abc@def.com" required>
+                    <input type="email" th:field="*{email}" id="email" placeholder="Abc@def.com" required>
                 </div>
                 <div class="form-group">
-                    <label for="firstname">First Name</label>
-                    <input type="text" id="firstname" name="firstname" placeholder="Abc" required>
+                    <label for="firstName">First Name</label>
+                    <input type="text" th:field="*{firstName}" id="firstName" placeholder="Abc" required>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" placeholder="+40" required>
+                    <label for="phoneNumber">Phone Number</label>
+                    <input type="tel" th:field="*{phoneNumber}" id="phoneNumber" placeholder="+40" required>
                 </div>
                 <div class="form-group">
                     <label for="address">Address</label>
-                    <input type="text" id="address" name="address" placeholder="Street..." required>
+                    <input type="text" th:field="*{address}" id="address" placeholder="Street..." required>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Abc" required>
+                    <input type="password" th:field="*{password}" id="password" placeholder="Abc" required>
                 </div>
                 <div class="form-group">
                     <label for="confirmPassword">Confirm Password</label>
@@ -65,17 +65,17 @@
 
             <div class="form-group role-selection">
                 <label>
-                    <input type="radio" name="role" value="customer" required>
+                    <input type="radio" name="role" value="LOCAL" required>
                     Customer
                 </label>
                 <label>
-                    <input type="radio" name="role" value="businessOwner" required>
+                    <input type="radio" name="role" value="BUSINESS_OWNER" required>
                     Business Owner
                 </label>
             </div>
 
             <div class="form-group">
-                <a th:href="@{/locals-home}" class="primary-btn">Submit</a>
+                <button type="submit" class="primary-btn">Submit</button>
             </div>
 
             <p class="login-link">
@@ -85,7 +85,6 @@
     </section>
 </main>
 
-<!-- Include footer fragment -->
 <div th:replace="fragments/general :: footer"></div>
 
 </body>

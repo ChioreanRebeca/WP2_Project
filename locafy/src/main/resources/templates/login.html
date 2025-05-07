@@ -2,26 +2,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Sign Up - Locafy</title>
+    <title>Login - Locafy</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
 
-<!-- Include header fragment -->
 <div th:replace="fragments/general :: header"></div>
 
 <main class="signup-page">
     <section class="signup-form-section">
         <h1>Login!</h1>
         <p>
-            For More Information please Feel Free To Drop Us An Email. Our Staff Always Be There To Help You Out. Do Not Hesitate!
+            For more information, please feel free to drop us an email. Our staff is always here to help you out. Do not hesitate!
         </p>
 
-        <form action="#" method="post" class="signup-form">
+        <!-- Spring Security login form -->
+        <form th:action="@{/login}" method="post" class="signup-form">
             <div class="form-row">
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" placeholder="your name" required>
+                    <input type="text" id="username" name="username" placeholder="Your name" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
@@ -40,7 +40,6 @@
     </section>
 </main>
 
-<!-- Include footer fragment -->
 <div th:replace="fragments/general :: footer"></div>
 
 </body>

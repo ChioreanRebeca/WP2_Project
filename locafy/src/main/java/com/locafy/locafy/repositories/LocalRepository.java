@@ -3,6 +3,8 @@ package com.locafy.locafy.repositories;
 import com.locafy.locafy.domain.Local;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 /*
 A repository in Spring Data JPA is a special interface that lets you interact with the database without writing any SQL or boilerplate code.
 * It handles all the CRUD operations (Create, Read, Update, Delete) for your entity.
@@ -23,5 +25,6 @@ A repository in Spring Data JPA is a special interface that lets you interact wi
 
 
 public interface LocalRepository extends JpaRepository<Local, Long> {
+    Optional<Local> findByUserName(String userName);
     
 }
