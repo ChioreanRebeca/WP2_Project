@@ -1,4 +1,4 @@
-# GoLocal
+# Locafy
 
 ## Short description:
 A website where local businesses can register to list their services, and residents 
