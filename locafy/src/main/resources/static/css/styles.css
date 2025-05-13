@@ -401,12 +401,6 @@ img {
     resize: none;
 }
 
-.gender-radio {
-    display: flex;
-    gap: 1rem;
-    padding-top: 0.5rem;
-}
-
 .profile-save {
     width: 100%;
     text-align: center;
@@ -421,6 +415,12 @@ img {
     border-radius: 6px;
     font-size: 1rem;
     cursor: pointer;
+}
+.readonly-text {
+    padding: 0.5rem;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 6px;
 }
 
 /* Favorites Page */
