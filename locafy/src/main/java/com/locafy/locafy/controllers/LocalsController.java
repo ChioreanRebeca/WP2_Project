@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
+
 @Controller
 public class LocalsController {
 
@@ -23,7 +25,9 @@ public class LocalsController {
     private PasswordEncoder passwordEncoder;
 
     @GetMapping("/locals-home")
-    public String localsHomePage() {
+    public String localsHomePage(Model model, Principal principal) {
+        Local currentUser = localRepository.findByUserName(principal.getName()).orElseThrow();
+        model.addAttribute("local", currentUser);
         return "locals-home";
     }
 
@@ -55,7 +59,9 @@ public class LocalsController {
     }
 
     @GetMapping("/favorites")
-    public String FavoritesPage() {
+    public String FavoritesPage(Model model, Principal principal) {
+        Local currentUser = localRepository.findByUserName(principal.getName()).orElseThrow();
+        model.addAttribute("local", currentUser);
         return "favorites";
     }
 }

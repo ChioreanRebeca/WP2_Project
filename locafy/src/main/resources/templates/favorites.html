@@ -14,9 +14,9 @@
     <!-- Profile Card -->
     <div class="profile-card">
         <a th:href="@{/local-profile}">
-            <img th:src="@{/images/sample-profile-picture.png}" alt="Profile Picture">
+            <img th:src="@{/images/blank-profile.png}" alt="Profile Picture">
         </a>
-        <p class="profile-name">Aline Manderi</p>
+        <p class="profile-name" th:text="${local.firstName + ' ' + local.lastName}">Full Name</p>
     </div>
 
     <h1 class="favorites-title">Your Favorites</h1>

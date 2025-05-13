@@ -14,10 +14,10 @@
     <section class="profile-container">
         <div class="profile-header">
             <div>
-                <h2>Customer</h2>
-                <h1>Aline Manderi</h1>
+                <h2>Local</h2>
+                <h1 th:text="${local.firstName + ' ' + local.lastName}">First Last</h1>
             </div>
-            <img th:src="@{/images/sample-profile-picture.png}" alt="Profile Image">
+            <img th:src="@{/images/blank-profile.png}" alt="Profile Image">
         </div>
 
         <form th:action="@{/local-profile}" th:object="${local}" method="post" class="profile-form">

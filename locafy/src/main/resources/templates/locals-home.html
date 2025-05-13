@@ -72,8 +72,8 @@
         <aside class="profile-sidebar">
             <a th:href="@{/local-profile}">
             <div class="profile-card">
-                <img th:src="@{/images/sample-profile-picture.png}" alt="Profile Picture">
-                <p class="profile-name">Aline Manderi</p>
+                <img th:src="@{/images/blank-profile.png}" alt="Profile Picture">
+                <p class="profile-name" th:text="${local.firstName + ' ' + local.lastName}">Full Name</p>
             </div>
             </a>
             <a th:href="@{/favorites}">
