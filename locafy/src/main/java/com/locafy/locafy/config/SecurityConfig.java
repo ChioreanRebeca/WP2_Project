@@ -28,7 +28,7 @@ public class SecurityConfig {
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .successHandler(customLoginSuccessHandler)  // 👈 use the dynamic handler
+                        .successHandler(customLoginSuccessHandler)  //using the dynamic handler
                         .permitAll()
                 )
                 .logout(logout -> logout
@@ -43,8 +43,8 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
+    /*@Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
+    }*/
 }

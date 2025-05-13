@@ -25,7 +25,7 @@ public class LocafyApplication {
 			Local local1 = new Local(
 					"george123",
 					"george123@gmail.com",
-					"123abc",
+					"{noop}123abc",
 					"George",
 					"Bush",
 					"+40 723 213 5432",
@@ -36,7 +36,7 @@ public class LocafyApplication {
 			Local local2 = new Local(
 					"oana",
 					"oanamaria@gmail.com",
-					"4oana32432",
+					"{noop}4oana32432", //{noop} is for testing purposes so that I don't have to provide an encoded passwd
 					"Oana",
 					"Maria",
 					"+40 723 543 1343",
@@ -53,8 +53,8 @@ public class LocafyApplication {
 			///business owner logic
 			BusinessOwner owner1 = new BusinessOwner();
 			owner1.setUsername("biz123");
-			owner1.setPassword("pass123");
-			owner1.setFisrtName("John");
+			owner1.setPassword("{noop}pass123");
+			owner1.setFirstName("John");
 			owner1.setLastName("Doe");
 			owner1.setEmail("john@example.com");
 			owner1.setPhoneNumber("+40 700 000 000");
@@ -62,8 +62,8 @@ public class LocafyApplication {
 
 			BusinessOwner owner2 = new BusinessOwner();
 			owner2.setUsername("startupgirl");
-			owner2.setPassword("securepass");
-			owner2.setFisrtName("Ana");
+			owner2.setPassword("{noop}securepass");
+			owner2.setFirstName("Ana");
 			owner2.setLastName("Popescu");
 			owner2.setEmail("ana@startup.ro");
 			owner2.setPhoneNumber("+40 711 222 333");
@@ -76,11 +76,11 @@ public class LocafyApplication {
 			///business logic
 			BusinessOwner owner = new BusinessOwner();
 			owner.setUsername("ceoAnna");
-			owner.setFisrtName("Anna");
+			owner.setFirstName("Anna");
 			owner.setLastName("Ionescu");
 			owner.setEmail("anna@startup.ro");
 			owner.setPhoneNumber("+40 700 111 222");
-			owner.setPassword("safePass123");
+			owner.setPassword("{noop}safePass123");
 			owner.setAddress("Cluj, str. Observatorului, nr. 15");
 
 			BusinessOwner savedOwner = businessOwnerRepository.save(owner);

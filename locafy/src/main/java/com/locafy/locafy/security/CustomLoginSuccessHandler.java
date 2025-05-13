@@ -30,6 +30,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
                 break;
             }
         }
+        System.out.println("Redirect URL: " + redirectURL); // Debugging line
 
         response.sendRedirect(redirectURL);
     }

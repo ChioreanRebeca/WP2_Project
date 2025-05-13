@@ -18,11 +18,11 @@
         </p>
 
         <!-- BIND form to Local object -->
-        <form th:action="@{/signup}" th:object="${local}" method="post" class="signup-form">
+        <form th:action="@{/signup}" th:object="${signupForm}" method="post" class="signup-form">
             <div class="form-row">
                 <div class="form-group">
                     <label for="userName">Username</label>
-                    <input type="text" th:field="*{userName}" id="userName" placeholder="Abc" required>
+                    <input type="text" th:field="*{username}" id="userName" placeholder="Abc" required>
                 </div>
                 <div class="form-group">
                     <label for="lastName">Last Name</label>
@@ -66,7 +66,7 @@
             <div class="form-group role-selection">
                 <label>
                     <input type="radio" name="role" value="LOCAL" required>
-                    Customer
+                    Local
                 </label>
                 <label>
                     <input type="radio" name="role" value="BUSINESS_OWNER" required>

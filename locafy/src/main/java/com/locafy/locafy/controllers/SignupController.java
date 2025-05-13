@@ -1,6 +1,9 @@
 package com.locafy.locafy.controllers;
 
+import com.locafy.locafy.domain.BusinessOwner;
 import com.locafy.locafy.domain.Local;
+import com.locafy.locafy.dto.SignupFormDTO;
+import com.locafy.locafy.repositories.BusinessOwnerRepository;
 import com.locafy.locafy.repositories.LocalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,18 +20,37 @@ public class SignupController {
     private LocalRepository localRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private BusinessOwnerRepository businessOwnerRepository;
+
+    /*@Autowired
+    private PasswordEncoder passwordEncoder;*/
 
     @GetMapping("/signup")
     public String showSignupForm(Model model) {
-        model.addAttribute("local", new Local());
+        model.addAttribute("signupForm", new SignupFormDTO());
         return "signup";
     }
 
     @PostMapping("/signup")
-    public String registerUser(@ModelAttribute Local local) {
-        local.setPassword(passwordEncoder.encode(local.getPassword()));
-        localRepository.save(local);
+    public String registerUser(@ModelAttribute("signupForm") SignupFormDTO form) {
+       /* String encodedPassword = passwordEncoder.encode(form.getPassword())*/;
+
+        if ("LOCAL".equalsIgnoreCase(form.getRole())) {
+            Local local = new Local(
+                    form.getUsername(), form.getEmail(), form.getPassword(),
+                    form.getFirstName(), form.getLastName(), form.getPhoneNumber(), form.getAddress()
+            );
+            local.getRoles().add("ROLE_LOCAL");
+            localRepository.save(local);
+
+        } else if ("BUSINESS_OWNER".equalsIgnoreCase(form.getRole())) {
+            BusinessOwner bo = new BusinessOwner(
+                    form.getUsername(), form.getPassword(), form.getFirstName(), form.getLastName(),
+                    form.getEmail(), form.getPhoneNumber(), form.getAddress()
+            );
+            businessOwnerRepository.save(bo);
+        }
+
         return "redirect:/login";
     }
 }
