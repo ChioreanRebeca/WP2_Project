@@ -1,6 +1,7 @@
 package com.locafy.locafy.controllers;
 
-import com.locafy.locafy.domain.Local;
+import com.locafy.locafy.domain.Business;
+import com.locafy.locafy.repositories.BusinessRepository;
 import org.springframework.ui.Model;
 import com.locafy.locafy.domain.BusinessOwner;
 import com.locafy.locafy.repositories.BusinessOwnerRepository;

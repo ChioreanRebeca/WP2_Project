@@ -695,3 +695,71 @@ img {
     background-color: #4caf50;
 }
 
+/*Business Details*/
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #202D26;
+    color: #1D3628;
+    margin: 0;
+    padding: 0;
+}
+
+main.business-profile {
+    background-color: #E0E7E2;
+    margin: 2rem auto;
+    padding: 2rem;
+    max-width: 900px;
+    border-radius: 8px;
+}
+
+.info-section h2 {
+    color: #3A6B2E;
+}
+
+.info-card {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.certified-badge {
+    margin-top: 1rem;
+    background: #d6f5d6;
+    padding: 0.5rem;
+    border-radius: 50%;
+    text-align: center;
+    width: 120px;
+    height: 120px;
+    line-height: 120px;
+    font-weight: bold;
+    color: #3A6B2E;
+}
+
+.images-section {
+    margin-top: 2rem;
+}
+
+.images-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.image-box img {
+    width: 150px;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.description-section {
+    background: white;
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+

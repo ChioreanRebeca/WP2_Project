@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Business Profile</title>
+</head>
+<body>
+
+<!-- Header Fragment -->
+<div th:replace="~{fragments/general :: header-login}"></div>
+
+<main class="business-profile">
+    <section class="info-section">
+        <h2 th:text="${business.businessName}">Business Name</h2>
+        <div class="info-card">
+            <p><strong>Business Owner:</strong> <span th:text="${business.owner.firstName + ' ' + business.owner.lastName}"></span></p>
+            <p><strong>Phone:</strong> <span th:text="${business.phoneNumber}"></span></p>
+            <p><strong>Location:</strong> <span th:text="${business.address}">City, Street, number</span></p>
+            <p><strong>Website:</strong> <a th:href="'https://' + ${business.website}" th:text="${business.website}"></a></p>
+            <div class="certified-badge">Certified Business</div>
+            <button>Edit</button>
+        </div>
+    </section>
+
+    <section class="images-section">
+        <h3>Images:</h3>
+        <div class="images-container">
+            <p th:if="${#lists.isEmpty(images)}">Your added images will be displayed here</p>
+            <div th:each="image : ${images}" class="image-box">
+                <img th:src="@{'/images/' + ${image.id}}" alt="Business Image">
+            </div>
+        </div>
+
+        <form th:action="@{'/businesses/' + ${business.id} + '/upload-image'}" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <button type="submit">Add photo</button>
+        </form>
+    </section>
+
+    <section class="description-section">
+        <h3>Description</h3>
+        <p th:text="${business.description}">Business description goes here.</p>
+        <button>Edit</button>
+    </section>
+</main>
+
+<!-- Footer Fragment -->
+<div th:replace="~{fragments/general :: footer}"></div>
+
+</body>
+</html>

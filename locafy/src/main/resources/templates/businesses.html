@@ -23,12 +23,14 @@
 
             <section class="businesses-section">
                 <h3>Your Businesses:</h3>
-                <a class="add-business" th:href="@{/edit-business}">Add Business +</a>
+                <a class="add-business" th:href="@{/business-details}">Add Business +</a>
 
                 <div class="business-card owner-card" > <!--th:each="business : ${owner.businesses}"-->
                     <img th:src="@{/images/cabage.jpg}" alt="Business image" />
                     <div class="business-info">
                         <h4 >Bakery</h4><!--th:text="${business.name}"-->
+
+                        <a class="add-business" th:href="@{/business-details}">Edit Business +</a>
                         <p >Allergens: gluten, nuts, lactose</p><!--th:text="${business.description}"-->
                     </div>
                     <div class="business-actions">
