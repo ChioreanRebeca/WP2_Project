@@ -58,13 +58,13 @@
         </div>
 
         <aside class="profile-sidebar">
-            <a th:href="@{/local-profile}">
+            <a th:href="@{/business-owner-profile}">
                 <div class="profile-card">
-                    <img th:src="@{/images/sample-profile-picture.png}" alt="Profile Picture">
-                    <p class="profile-name">Business Owner</p>
+                    <img th:src="@{/images/blank-profile.png}" alt="Profile Picture">
+                    <p class="profile-name" th:text="${owner.firstName + ' ' + owner.lastName}">Full Name</p>
                 </div>
             </a>
-            <a th:href="@{/business-owner}"> <!-- Equivalent to favorites for local -->
+            <a th:href="@{/businesses}"> <!-- Equivalent to favorites for local -->
                 <div class="favourites-box">
                     <p>Your businesses</p>
                 </div>
