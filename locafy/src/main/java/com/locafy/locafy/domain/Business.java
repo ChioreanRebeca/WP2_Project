@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -37,8 +40,8 @@ public class Business {
     @Column(unique=true, columnDefinition = "Text")
     private String website;
 
-    @Lob
-    private byte[] image;
+    @Column(unique=true, columnDefinition = "Text")
+    private String description;
 
     // Foreign key: Many businesses to one owner
 
@@ -47,12 +50,16 @@ public class Business {
     @JoinColumn(name = "owner_id", nullable = false)
     private BusinessOwner owner;
 
-    Business(String businessName, String phoneNumber, String email, String address, String website, byte[] image) {
+    @OneToMany(mappedBy = "business", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Image> images = new ArrayList<>();
+
+
+    Business(String businessName, String phoneNumber, String email, String address, String website, String description) {
         this.businessName = businessName;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
         this.website = website;
-        this.image = image;
+        this.description = description;
     }
 }

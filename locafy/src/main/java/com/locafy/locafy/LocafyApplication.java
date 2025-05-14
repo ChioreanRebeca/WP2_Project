@@ -6,7 +6,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.ClassPathResource;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
@@ -18,7 +23,7 @@ public class LocafyApplication {
 	@Bean
 	CommandLineRunner commandLineRunner (LocalRepository localRepository, BusinessRepository businessRepository,
 										 FavoritesRepository favoritesRepository, BusinessOwnerRepository businessOwnerRepository,
-										 ReviewsRepository reviewsRepository) {
+										 ReviewsRepository reviewsRepository, ImageRepository imageRepository) {
 		return args -> {
 
 			/// locals logic
@@ -90,18 +95,45 @@ public class LocafyApplication {
 			biz1.setPhoneNumber("+40 711 123 456");
 			biz1.setEmail("coffee@anna.ro");
 			biz1.setWebsite("www.annascoffee.ro");
+			biz1.setDescription("Coffee");
 			biz1.setOwner(savedOwner);
 
 			Business biz2 = new Business();
 			biz2.setBusinessName("Anna’s Bakery");
-			biz2.setPhoneNumber("+40 711 999 888");
+			biz2.setPhoneNumber("+40 711 999 788");
 			biz2.setEmail("bakery@anna.ro");
 			biz2.setWebsite("www.annasbakery.ro");
+			biz2.setDescription("Bakery");
 			biz2.setOwner(savedOwner);
 
-			businessRepository.saveAll(List.of(biz1, biz2));
+			Business biz3 = new Business();
+			biz3.setBusinessName("Anna’s Cabbage Farm");
+			biz3.setPhoneNumber("+40 711 999 777");
+			biz3.setEmail("cabbages@anna.ro");
+			biz3.setWebsite("www.annascabbages.ro");
+			biz3.setDescription("Good delicious cabbages");
+			biz3.setOwner(savedOwner);
+
+			businessRepository.saveAll(List.of(biz1, biz2, biz3));
 
 
+			/// images for business 3
+			List<Image> images = new ArrayList<>();
+
+			try {
+				String[] fileNames = {"cabbage1.png", "cabbage2.png", "cabbage3.png", "cabbage4.png", "cabbage5.png"};
+				for (String fileName : fileNames) {
+					ClassPathResource imgFile = new ClassPathResource("static/images/" + fileName);
+					byte[] imageData = imgFile.getInputStream().readAllBytes();
+					Image image = new Image();
+					image.setData(imageData);
+					image.setBusiness(biz3);
+					images.add(image);
+				}
+				imageRepository.saveAll(images);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 
 			//George Bush and Anna's Coffee
 			List<Local> locals = localRepository.findAll();
