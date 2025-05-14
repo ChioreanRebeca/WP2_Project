@@ -22,8 +22,8 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/images/**", "/", "/home", "/login", "/signup", "/css/**", "/js/**", "/contact").permitAll()
-                        .requestMatchers("/locals-home", "/local-profile").hasRole("LOCAL")
-                        .requestMatchers("/business-owner-home", "/business-owner-profile").hasRole("BUSINESS_OWNER")
+                        .requestMatchers("/locals-home", "/local-profile", "/favorites").hasRole("LOCAL")
+                        .requestMatchers("/business-owner-home", "/business-owner-profile", "/businesses").hasRole("BUSINESS_OWNER")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -33,7 +33,7 @@ public class SecurityConfig {
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")              // <--- this is the URL Spring Security listens on
-                        .logoutSuccessUrl("/")            // <--- after logout, redirect to home page
+                        .logoutSuccessUrl("/?logout")            // <--- after logout, redirect to home page
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
                         .deleteCookies("JSESSIONID")

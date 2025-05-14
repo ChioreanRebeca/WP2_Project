@@ -562,3 +562,136 @@ img {
     margin-top: 1rem;
 }
 
+/* Business Owner Dashboard Styles */
+.owner-dashboard {
+    background-color: #1e2722;
+    padding: 3rem 2rem;
+    color: #000;
+}
+
+.dashboard-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 2rem;
+}
+
+.owner-info {
+    flex: 3;
+    background-color: #d8e3dc;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.owner-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.owner-header img {
+    width: 100px;
+    height: 100px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.businesses-section h3 {
+    color: #2e7d32;
+    margin-bottom: 0.5rem;
+}
+
+.add-business {
+    display: inline-block;
+    color: #004d40;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.owner-card {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.owner-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+
+.owner-card .business-info {
+    flex: 2;
+}
+
+.owner-card .business-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-end;
+    flex: 1;
+}
+
+.edit-btn,
+.remove-btn,
+.change-profile-btn {
+    background-color: #26a69a;
+    color: white;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+.remove-btn {
+    background-color: #d9534f;
+}
+
+.remove-btn:hover {
+    background-color: #c9302c;
+}
+
+.profile-summary {
+    flex: 1;
+}
+
+.profile-card {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.profile-card p {
+    margin-bottom: 0.5rem;
+}
+
+.certified-badge {
+    margin: 1rem 0;
+    font-weight: bold;
+    color: #2e7d32;
+}
+
+.certified-badge img {
+    width: 60px;
+    height: 60px;
+}
+
+.change-profile-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    font-weight: bold;
+    background-color: #4caf50;
+}
+

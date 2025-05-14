@@ -22,7 +22,7 @@ public class BusinessOwnerController {
     public BusinessOwnerController(BusinessOwnerRepository businessOwnerRepository) {
         this.businessOwnerRepository = businessOwnerRepository;
     }
-    
+
     @GetMapping("/business-owner-home")
     public String businessOwnerHome(Model model, Principal principal) {
         BusinessOwner currentUser = businessOwnerRepository.findByUsername(principal.getName()).orElseThrow();
@@ -60,8 +60,10 @@ public class BusinessOwnerController {
         return "redirect:/business-owner-profile";
     }
 
-    @GetMapping("/business-owner")
-    public String businessOwner() {
+    @GetMapping("/businesses")
+    public String businessOwner(Model model, Principal principal) {
+        BusinessOwner currentUser = businessOwnerRepository.findByUsername(principal.getName()).orElseThrow();
+        model.addAttribute("owner", currentUser);
         return "businesses";
     }
 }
