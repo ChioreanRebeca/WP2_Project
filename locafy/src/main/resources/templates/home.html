@@ -9,8 +9,8 @@
 <body>
 
 <!-- Include header fragment -->
-<div sec:authorize="isAuthenticated()" th:replace="fragments/general :: header-login"></div>
-<div sec:authorize="isAnonymous()" th:replace="fragments/general :: header"></div>
+<div sec:authorize="isAuthenticated()" th:replace="~{fragments/general :: header-login}"></div>
+<div sec:authorize="isAnonymous()" th:replace="~{fragments/general :: header}"></div>
 
 <main class="main-content">
     <section class="hero">

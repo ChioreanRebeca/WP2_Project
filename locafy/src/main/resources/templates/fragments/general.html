@@ -44,7 +44,9 @@
             </ul>
         </nav>
         <div class="header-buttons">
-            <a th:href="@{/}" class="secondary-btn">Sign Out</a>
+            <form th:action="@{/logout}" method="post" style="display:inline;">
+                <button type="submit" class="secondary-btn">Sign out</button>
+            </form>
         </div>
     </header>
 </div>
