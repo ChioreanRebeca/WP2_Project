@@ -10,8 +10,8 @@ import java.security.Principal;
 public class HomeController {
 
     @GetMapping("/")
-    public String home(HttpServletRequest request, Principal principal) {
-        System.out.println("Principal after logout: " + principal); // should be null
+    public String home(Principal principal) {
+        System.out.println("Principal after logout: " + principal);
         return "home";
     }
 

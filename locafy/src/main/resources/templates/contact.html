@@ -6,9 +6,7 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<!-- Include header fragment -->
-<div sec:authorize="isAuthenticated()" th:replace="~{fragments/general :: header-login}"></div>
-<div sec:authorize="isAnonymous()" th:replace="~{fragments/general :: header}"></div>
+<div th:replace="~{fragments/general :: header}"></div>
 
 <p>This is the contact us page</p>
 

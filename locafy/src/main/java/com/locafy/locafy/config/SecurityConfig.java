@@ -28,12 +28,12 @@ public class SecurityConfig {
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .successHandler(customLoginSuccessHandler)  //using the dynamic handler
+                        .successHandler(customLoginSuccessHandler)
                         .permitAll()
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")              // <--- this is the URL Spring Security listens on
-                        .logoutSuccessUrl("/?logout")            // <--- after logout, redirect to home page
+                        .logoutSuccessUrl("/")            // <--- after logout, redirect to home page
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
                         .deleteCookies("JSESSIONID")
