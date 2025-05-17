@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.security.Principal;
@@ -105,4 +106,68 @@ public class BusinessController {
         Image image = imageRepository.findById(imageId).orElseThrow();
         return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(image.getData());
     }
+
+    // Remove a business
+    @PostMapping("/remove/{id}")
+    public String removeBusiness(@PathVariable Long id, Principal principal, RedirectAttributes redirectAttributes) {
+        BusinessOwner owner = businessOwnerRepository.findByUsername(principal.getName()).orElseThrow();
+
+        Business business = businessRepository.findById(id).orElseThrow();
+
+        // Check if business belongs to current owner before deleting (optional safety)
+        if (business.getOwner().getId() != owner.getId()) {
+            // unauthorized delete attempt - handle accordingly (e.g., throw exception or ignore)
+            redirectAttributes.addFlashAttribute("error", "Unauthorized action.");
+            return "redirect:/businesses";
+        }
+
+        businessRepository.delete(business);
+        redirectAttributes.addFlashAttribute("success", "Business removed successfully.");
+        return "redirect:/businesses";
+    }
+
+    // Save or update business
+    @PostMapping({"/save"})
+    public String saveOrUpdateBusiness(@PathVariable(required = false) Long id,
+                                       @ModelAttribute("business") Business formBusiness,
+                                       Principal principal,
+                                       RedirectAttributes redirectAttributes,
+                                       Model model) {
+        BusinessOwner owner = businessOwnerRepository.findByUsername(principal.getName()).orElseThrow();
+        Business business;
+
+        if (formBusiness.getId() != null) {
+            // Update existing business
+            business = businessRepository.findById(formBusiness.getId()).orElseThrow();
+            if (business.getOwner().getId() != owner.getId()) {
+                redirectAttributes.addFlashAttribute("error", "Unauthorized action.");
+                return "redirect:/businesses";
+            }
+            // Update fields
+            business.setBusinessName(formBusiness.getBusinessName());
+            business.setPhoneNumber(formBusiness.getPhoneNumber());
+            business.setEmail(formBusiness.getEmail());
+            business.setAddress(formBusiness.getAddress());
+            business.setWebsite(formBusiness.getWebsite());
+            business.setDescription(formBusiness.getDescription());
+        } else {
+            // Create new business
+            business = new Business();
+            business.setOwner(owner);
+            business.setBusinessName(formBusiness.getBusinessName());
+            business.setEmail(formBusiness.getEmail());
+            business.setPhoneNumber(formBusiness.getPhoneNumber());
+            business.setAddress(formBusiness.getAddress());
+            business.setWebsite(formBusiness.getWebsite());
+            business.setDescription(formBusiness.getDescription());
+        }
+
+        businessRepository.save(business);
+
+        redirectAttributes.addFlashAttribute("success", "Business updated successfully.");
+
+        // Redirect to business-details page of this business
+        return "redirect:/businesses/business-details/" + business.getId();
+    }
+
 }

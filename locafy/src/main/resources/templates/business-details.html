@@ -30,6 +30,12 @@
                 </p>
 
                 <p>
+                    <label>Email:
+                        <input type="text" name="email" th:value="${business.email}" placeholder="Email Address" required/>
+                    </label>
+                </p>
+
+                <p>
                     <label>Location:
                         <input type="text" name="address" th:value="${business.address}" placeholder="City, Street, number" required/>
                     </label>
@@ -65,8 +71,10 @@
             </label>
         </section>
 
-        <button type="submit">Save</button>
+        <button type="submit" class="primary-btn">Save</button>
     </form>
+
+    <a th:href="@{/businesses}" class="primary-btn">Go back to your businesses</a>
 
 </main>
 

@@ -23,7 +23,7 @@ public class Business {
             allocationSize = 1
     )
     @Column(updatable = false)
-    private long id;
+    private Long id;
 
     @Column(nullable=false, columnDefinition = "Text")
     private String businessName;
