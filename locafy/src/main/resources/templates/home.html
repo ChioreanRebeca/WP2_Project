@@ -13,8 +13,6 @@
 <main class="main-content">
     <section class="hero">
         <div class="hero-text">
-            <p sec:authorize="isAuthenticated()">✅ You are authenticated</p>
-            <p sec:authorize="isAnonymous()">❌ You are anonymous</p>
             <h1>Your go-to hub for discovering local businesses</h1>
             <p>Connect to services in your local area: reliable, affordable, and trusted.</p>
             <a th:href="@{/login}" class="primary-btn">Discover now</a>

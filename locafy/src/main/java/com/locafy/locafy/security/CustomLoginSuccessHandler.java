@@ -21,36 +21,19 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
                                         Authentication authentication)
             throws IOException, ServletException {
         String redirectURL = request.getContextPath();
-        boolean hasValidRole = false;
 
         for (GrantedAuthority auth : authentication.getAuthorities()) {
             String role = auth.getAuthority();
             if (role.equals("ROLE_LOCAL")) {
                 redirectURL = "/locals-home";
-                hasValidRole = true;
                 break;
             } else if (role.equals("ROLE_BUSINESS_OWNER")) {
                 redirectURL = "/business-owner-home";
-                hasValidRole = true;
                 break;
             }
         }
 
-        /*if (!hasValidRole) {
-            // Clear authentication
-            SecurityContextHolder.clearContext();
-
-            // Invalidate session
-            HttpSession session = request.getSession(false);
-            if (session != null) {
-                session.invalidate();
-            }
-
-            // Redirect to login page with error
-            response.sendRedirect("/login?error=missing_role");
-            return;
-        }*/
-        System.out.println("Redirect URL: " + redirectURL); // Debugging line
+        System.out.println("Redirect URL: " + redirectURL);
 
         response.sendRedirect(redirectURL);
     }
