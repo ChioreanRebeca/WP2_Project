@@ -1,10 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
-    <title>Business Overview</title>
+    <title>Business Details</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
+
+<!-- Unified header fragment -->
+<div th:replace="~{fragments/general :: header}"></div>
+
+<main class="business-details">
+
+    <div class="info-images-wrapper">
+        <section class="info-summary">
+            <h2 th:text="${business.businessName}">Cabbage Business</h2>
+            <div class="info-box">
+                <p><strong>Business Owner:</strong> <span th:text="${business.owner.firstName + ' ' + business.owner.lastName}">Alex Popescu</span></p>
+                <p><strong>Phone:</strong> <span th:text="${business.phoneNumber}">+40723400627</span></p>
+                <p><strong>Location:</strong> <span th:text="${business.address}">City, Street, number</span></p>
+                <p><strong>Website:</strong> <a th:href="'https://' + ${business.website}" th:text="${business.website}">www.best-cabbage-in-town.com</a></p>
+                <div class="certified-tag">Certified Business</div>
+            </div>
+        </section>
+
+        <section class="images">
+            <h3>Images:</h3>
+            <div class="image-grid">
+                <div th:each="img : ${business.images}">
+                    <img th:src="@{'/images/' + ${img.id}}" alt="Business image"/>
+                </div>
+                <div th:if="${business.images.isEmpty()}">No images available.</div>
+            </div>
+        </section>
+    </div>
+
+    <section class="description">
+        <h3>Description</h3>
+        <p th:text="${business.description}">
+            Business description goes here.
+        </p>
+    </section>
+
+    <section class="ratings">
+        <h3>Business Reviews</h3>
+        <div class="average-rating">
+            <div class="stars">
+                <span th:text="${#numbers.formatDecimal(averageRating, 1, 1)}">4.7</span>
+                <span>★</span>
+            </div>
+            <p th:text="${totalReviews + ' reviews'}">(329 reviews)</p>
+        </div>
+
+        <div class="rating-bars">
+            <div th:each="i : ${#numbers.sequence(5,1)}" class="rating-bar">
+                <span th:text="${i} + ' stars'">5 stars</span>
+                <div class="bar-container">
+                    <div class="bar-fill" th:style="'width:' + ${ratingDistribution[i] * 100 / totalReviews} + '%'"></div>
+                </div>
+                <span th:text="${ratingDistribution[i]}">123</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="reviews">
+        <div th:each="review : ${business.reviews}" class="review">
+            <div class="review-header">
+                <p th:text="${review.stars + ' ★'}">4 ★</p>
+                <span th:text="${review.local.lastName}">Jane C.</span>
+            </div>
+            <p th:text="${review.message}">Sample review message</p>
+        </div>
+    </section>
+
+    <section class="submit-review" sec:authorize="hasRole('LOCAL')">
+        <form method="post" th:action="@{/reviews}" th:object="${newReview}">
+            <textarea th:field="*{message}" placeholder="Add your review here..." required></textarea>
+            <div class="star-input">
+                <label>Rating: </label>
+                <select th:field="*{stars}" required>
+                    <option value="5">5 ★</option>
+                    <option value="4">4 ★</option>
+                    <option value="3">3 ★</option>
+                    <option value="2">2 ★</option>
+                    <option value="1">1 ★</option>
+                </select>
+            </div>
+            <button type="submit">Post review</button>
+        </form>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<div th:replace="~{fragments/general :: footer}"></div>
 
 </body>
 </html>

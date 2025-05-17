@@ -36,7 +36,7 @@ public class LocafyApplication {
 					"+40 723 213 5432",
 					"Bcharest Sector6, street, number 123"
 			);
-			local1.getRoles().add("ROLE_LOCAL");  // Hardcoding the ROLE_LOCAL directly
+			local1.getRoles().add("ROLE_LOCAL");
 
 			Local local2 = new Local(
 					"oana",
@@ -74,7 +74,7 @@ public class LocafyApplication {
 			owner2.setPhoneNumber("+40 711 222 333");
 			owner2.setAddress("Cluj, str. Observatorului, nr. 15");
 
-			businessOwnerRepository.save(owner1);
+			BusinessOwner savedOwner1 = businessOwnerRepository.save(owner1);
 			businessOwnerRepository.save(owner2);
 
 
@@ -114,7 +114,16 @@ public class LocafyApplication {
 			biz3.setDescription("Good delicious cabbages");
 			biz3.setOwner(savedOwner);
 
-			businessRepository.saveAll(List.of(biz1, biz2, biz3));
+			//business from owner1
+			Business biz4 = new Business();
+			biz4.setBusinessName("Separate Business");
+			biz4.setPhoneNumber("+40 711 999 775");
+			biz4.setEmail("business@doe.ro");
+			biz4.setWebsite("www.doebusiness.ro");
+			biz4.setDescription("Good productive business");
+			biz4.setOwner(savedOwner1);
+
+			businessRepository.saveAll(List.of(biz1, biz2, biz3, biz4));
 
 
 			/// images for business 3
