@@ -5,7 +5,9 @@ import com.locafy.locafy.domain.BusinessOwner;
 import com.locafy.locafy.domain.Image;
 import com.locafy.locafy.repositories.BusinessOwnerRepository;
 import com.locafy.locafy.repositories.BusinessRepository;
+import com.locafy.locafy.repositories.FavoritesRepository;
 import com.locafy.locafy.repositories.ImageRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,8 @@ public class BusinessController {
     private final BusinessRepository businessRepository;
     private final ImageRepository imageRepository;
     private final BusinessOwnerRepository businessOwnerRepository;
+    @Autowired
+    private FavoritesRepository favoritesRepository;
 
     public BusinessController(BusinessRepository businessRepository,
                               ImageRepository imageRepository,

@@ -53,6 +53,11 @@ public class Business {
     @OneToMany(mappedBy = "business", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Image> images = new ArrayList<>();
 
+    @OneToMany(mappedBy = "business", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Favorites> favorites;
+
+    @OneToMany(mappedBy = "business", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Reviews> reviews;
 
     Business(String businessName, String phoneNumber, String email, String address, String website, String description) {
         this.businessName = businessName;
