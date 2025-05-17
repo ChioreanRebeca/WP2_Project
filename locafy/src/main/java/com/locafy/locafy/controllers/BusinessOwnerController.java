@@ -60,11 +60,4 @@ public class BusinessOwnerController {
         businessOwnerRepository.save(currentOwner);
         return "redirect:/business-owner-profile";
     }
-
-    @GetMapping("/businesses")
-    public String businessOwner(Model model, Principal principal) {
-        BusinessOwner currentUser = businessOwnerRepository.findByUsername(principal.getName()).orElseThrow();
-        model.addAttribute("owner", currentUser);
-        return "businesses";
-    }
 }

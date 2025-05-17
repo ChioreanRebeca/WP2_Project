@@ -10,38 +10,64 @@
 <div th:replace="~{fragments/general :: header-login}"></div>
 
 <main class="business-profile">
-    <section class="info-section">
-        <h2 th:text="${business.businessName}">Business Name</h2>
-        <div class="info-card">
-            <p><strong>Business Owner:</strong> <span th:text="${business.owner.firstName + ' ' + business.owner.lastName}"></span></p>
-            <p><strong>Phone:</strong> <span th:text="${business.phoneNumber}"></span></p>
-            <p><strong>Location:</strong> <span th:text="${business.address}">City, Street, number</span></p>
-            <p><strong>Website:</strong> <a th:href="'https://' + ${business.website}" th:text="${business.website}"></a></p>
-            <div class="certified-badge">Certified Business</div>
-            <button>Edit</button>
-        </div>
-    </section>
 
-    <section class="images-section">
-        <h3>Images:</h3>
-        <div class="images-container">
-            <p th:if="${#lists.isEmpty(images)}">Your added images will be displayed here</p>
-            <div th:each="image : ${images}" class="image-box">
-                <img th:src="@{'/images/' + ${image.id}}" alt="Business Image">
+    <form th:action="@{/businesses/save}" method="post" enctype="multipart/form-data">
+        <input type="hidden" th:name="id" th:value="${business.id}" />
+
+        <section class="info-section">
+            <h2>
+                <label>
+                    <input type="text" name="businessName" th:value="${business.businessName}" placeholder="Business Name" required/>
+                </label>
+            </h2>
+            <div class="info-card">
+                <p><strong>Business Owner:</strong> <span th:text="${business.owner.firstName + ' ' + business.owner.lastName}"></span></p>
+
+                <p>
+                    <label>Phone:
+                        <input type="text" name="phoneNumber" th:value="${business.phoneNumber}" placeholder="Phone Number" required/>
+                    </label>
+                </p>
+
+                <p>
+                    <label>Location:
+                        <input type="text" name="address" th:value="${business.address}" placeholder="City, Street, number" required/>
+                    </label>
+                </p>
+
+                <p>
+                    <label>Website:
+                        <input type="text" name="website" th:value="${business.website}" placeholder="Website URL (e.g., annascoffee.ro)"/>
+                    </label>
+                </p>
+
+                <div class="certified-badge">Certified Business</div>
             </div>
-        </div>
+        </section>
 
-        <form th:action="@{'/businesses/' + ${business.id} + '/upload-image'}" method="post" enctype="multipart/form-data">
-            <input type="file" name="file" required>
-            <button type="submit">Add photo</button>
-        </form>
-    </section>
+        <section class="images-section">
+            <h3>Images:</h3>
+            <div class="images-container">
+                <p th:if="${#lists.isEmpty(images)}">Your added images will be displayed here</p>
+                <div th:each="image : ${images}" class="image-box">
+                    <img th:src="@{'/images/' + ${image.id}}" alt="Business Image">
+                </div>
+            </div>
 
-    <section class="description-section">
-        <h3>Description</h3>
-        <p th:text="${business.description}">Business description goes here.</p>
-        <button>Edit</button>
-    </section>
+            <!-- New image upload -->
+            <input type="file" name="file" multiple/>
+        </section>
+
+        <section class="description-section">
+            <h3>Description</h3>
+            <label>
+                <textarea name="description" rows="5" placeholder="Business description...">[[${business.description}]]</textarea>
+            </label>
+        </section>
+
+        <button type="submit">Save</button>
+    </form>
+
 </main>
 
 <!-- Footer Fragment -->

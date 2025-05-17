@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity(name = "business_owner")
 @Data
 @NoArgsConstructor
@@ -51,5 +54,8 @@ public class BusinessOwner {
         this.phoneNumber = phoneNumber;
         this.address = address;
     }
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Business> businesses = new ArrayList<>();
 
 }
