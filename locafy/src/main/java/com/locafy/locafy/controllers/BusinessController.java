@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -97,18 +98,21 @@ public class BusinessController {
 
     // Upload image for a specific business
     @PostMapping("/{id}/upload-image")
-    public String uploadImage(@PathVariable Long id, @RequestParam("file") MultipartFile file, Principal principal) throws IOException {
+    public String uploadImages(@PathVariable Long id, @RequestParam("files") MultipartFile[] files, Principal principal) throws IOException {
         Business business = businessRepository.findById(id).orElseThrow();
 
-        // Optional: verify ownership before upload
         if (!business.getOwner().getUsername().equals(principal.getName())) {
-            return "redirect:/businesses"; // or 403
+            return "redirect:/businesses";
         }
 
-        Image image = new Image();
-        image.setBusiness(business);
-        image.setData(file.getBytes());
-        imageRepository.save(image);
+        for (MultipartFile file : files) {
+            if (!file.isEmpty()) {
+                Image image = new Image();
+                image.setBusiness(business);
+                image.setData(file.getBytes());
+                imageRepository.save(image);
+            }
+        }
 
         return "redirect:/businesses/business-details/" + id;
     }
@@ -139,13 +143,13 @@ public class BusinessController {
         return "redirect:/businesses";
     }
 
-    // Save or update business
     @PostMapping({"/save"})
     public String saveOrUpdateBusiness(@PathVariable(required = false) Long id,
                                        @ModelAttribute("business") Business formBusiness,
+                                       @RequestParam(value = "files", required = false) MultipartFile[] files,
                                        Principal principal,
                                        RedirectAttributes redirectAttributes,
-                                       Model model) {
+                                       Model model) throws IOException {
         BusinessOwner owner = businessOwnerRepository.findByUsername(principal.getName()).orElseThrow();
         Business business;
 
@@ -175,12 +179,60 @@ public class BusinessController {
             business.setDescription(formBusiness.getDescription());
         }
 
+        // Save the business first (so it has an ID)
         businessRepository.save(business);
+
+        // Handle uploaded images (if any)
+        if (files != null) {
+            for (MultipartFile file : files) {
+                if (!file.isEmpty()) {
+                    Image image = new Image();
+                    image.setBusiness(business);
+                    image.setData(file.getBytes());
+                    imageRepository.save(image);
+                }
+            }
+        }
 
         redirectAttributes.addFlashAttribute("success", "Business updated successfully.");
 
-        // Redirect to business-details page of this business
         return "redirect:/businesses/business-details/" + business.getId();
     }
+
+    /*@ExceptionHandler(MaxUploadSizeExceededException.class)
+    public String handleMaxSizeException(RedirectAttributes redirectAttributes, HttpServletRequest request) {
+        redirectAttributes.addFlashAttribute("errorMessage", "Error: upload images smaller than 20MB");
+        // Redirect to the referring page (where the upload was attempted)
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
+    }
+    Doar daca mai am chef...daca imaginile depasesc de 50MB
+    */
+
+    @PostMapping("/images/{imageId}/delete")
+    public String deleteImage(@PathVariable Long imageId, Principal principal, RedirectAttributes redirectAttributes) {
+        Image image = imageRepository.findById(imageId).orElse(null);
+
+        if (image == null) {
+            redirectAttributes.addFlashAttribute("error", "Image not found.");
+            return "redirect:/businesses";
+        }
+
+        Business business = image.getBusiness();
+
+        // Check if logged-in user owns this business
+        if (!business.getOwner().getUsername().equals(principal.getName())) {
+            redirectAttributes.addFlashAttribute("error", "Unauthorized action.");
+            return "redirect:/businesses";
+        }
+
+        Long businessId = business.getId();
+        imageRepository.delete(image);
+
+        redirectAttributes.addFlashAttribute("success", "Image deleted successfully.");
+        return "redirect:/businesses/business-details/" + businessId;
+    }
+
+
 
 }

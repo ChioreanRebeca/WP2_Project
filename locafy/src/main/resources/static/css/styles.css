@@ -755,12 +755,37 @@ main.business-profile {
     object-fit: cover;
 }
 
-.description-section {
+.description-section textarea {
     background: white;
     margin-top: 2rem;
     padding: 1rem;
     border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
 }
+
+/* Styles the row that contains the Business Name and buttons */
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+/* Ensures the h2 has no extra margin and can grow */
+.header-row h2 {
+    margin: 0;
+    flex-grow: 1;
+}
+
+/* Aligns Save and Go Back buttons */
+.header-row .actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
 
 /*business-overview page*/
 
@@ -823,6 +848,7 @@ body {
 
 .description {
     margin-top: 2rem;
+
 }
 
 .ratings {

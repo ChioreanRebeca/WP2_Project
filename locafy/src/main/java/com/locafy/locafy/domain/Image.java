@@ -1,24 +1,32 @@
 package com.locafy.locafy.domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
 @Entity
+@Data
+@NoArgsConstructor
 public class Image {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(
+            name = "image_sequence",
+            sequenceName = "image_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "image_sequence"
+    )
+    @Column(updatable = false)
     private Long id;
 
-    @Setter
     @Lob
+    @Column(columnDefinition = "MEDIUMBLOB", nullable = false)
     private byte[] data;
 
-    @Setter
     @ManyToOne
     @JoinColumn(name = "business_id", nullable = false)
     private Business business;
-
 }
-
