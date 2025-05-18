@@ -21,14 +21,14 @@ import java.security.Principal;
 import java.util.List;
 
 @Controller
-@RequestMapping("/businesses")
+@RequestMapping("/businesses") // it means it is on the class, and it is a prefix for all other links in this controller
 public class BusinessController {
 
-    private final BusinessRepository businessRepository;
+    private final BusinessRepository businessRepository; //this is another way to do it
     private final ImageRepository imageRepository;
     private final BusinessOwnerRepository businessOwnerRepository;
     @Autowired
-    private FavoritesRepository favoritesRepository;
+    private FavoritesRepository favoritesRepository; //this is one way to do it
 
     public BusinessController(BusinessRepository businessRepository,
                               ImageRepository imageRepository,
@@ -42,6 +42,15 @@ public class BusinessController {
     @GetMapping
     public String showBusinesses(Model model, Principal principal) {
         BusinessOwner owner = businessOwnerRepository.findByUsername(principal.getName()).orElseThrow();
+
+        // Attach first image ID for each business
+        owner.getBusinesses().forEach(business -> {
+            List<Image> images = imageRepository.findByBusinessId(business.getId());
+            if (!images.isEmpty()) {
+                business.setImages(List.of(images.get(0))); // the first image in the list of images for each business
+            }
+        });
+
         model.addAttribute("owner", owner);
         return "businesses";
     }

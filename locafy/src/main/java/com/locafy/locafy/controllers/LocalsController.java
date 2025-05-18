@@ -1,6 +1,8 @@
 package com.locafy.locafy.controllers;
 
+import com.locafy.locafy.domain.Business;
 import com.locafy.locafy.domain.Local;
+import com.locafy.locafy.repositories.BusinessRepository;
 import com.locafy.locafy.repositories.LocalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -14,12 +16,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class LocalsController {
 
     @Autowired
     private LocalRepository localRepository;
+    @Autowired
+    private BusinessRepository businessRepository;
 
 /*    @Autowired
     private PasswordEncoder passwordEncoder;*/
@@ -27,7 +32,9 @@ public class LocalsController {
     @GetMapping("/locals-home")
     public String localsHomePage(Model model, Principal principal) {
         Local currentUser = localRepository.findByUserName(principal.getName()).orElseThrow();
+        List<Business> businesses = businessRepository.findAll();
         model.addAttribute("local", currentUser);
+        model.addAttribute("businesses", businesses);
         return "locals-home";
     }
 

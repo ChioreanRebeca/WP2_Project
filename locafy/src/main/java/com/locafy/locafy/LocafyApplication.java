@@ -144,6 +144,49 @@ public class LocafyApplication {
 				e.printStackTrace();
 			}
 
+			/// image for biz1: Coffee
+			try {
+				ClassPathResource imgFile = new ClassPathResource("static/images/coffee.png");
+				byte[] imageData = imgFile.getInputStream().readAllBytes();
+
+				Image image = new Image();
+				image.setData(imageData);
+				image.setBusiness(biz1);
+
+				imageRepository.save(image);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			/// image for biz2: Bakery
+			try {
+				ClassPathResource imgFile = new ClassPathResource("static/images/bakery.png");
+				byte[] imageData = imgFile.getInputStream().readAllBytes();
+
+				Image image = new Image();
+				image.setData(imageData);
+				image.setBusiness(biz2);
+
+				imageRepository.save(image);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			/// image for biz4 owner1: Separate
+			try {
+				ClassPathResource imgFile = new ClassPathResource("static/images/justbusiness.png");
+				byte[] imageData = imgFile.getInputStream().readAllBytes();
+
+				Image image = new Image();
+				image.setData(imageData);
+				image.setBusiness(biz4);
+
+				imageRepository.save(image);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+
 			//George Bush and Anna's Coffee
 			List<Local> locals = localRepository.findAll();
 			List<Business> businesses = businessRepository.findAll();

@@ -26,7 +26,14 @@
                 <a class="add-business" th:href="@{/businesses/business-details}">Add Business +</a>
 
                 <div class="business-card owner-card" th:each="business : ${owner.businesses}">
-                    <img th:src="@{/images/cabage.jpg}" alt="Business image" />
+                    <img th:if="${!business.images.isEmpty()}"
+                         th:src="@{'/businesses/images/' + ${business.images[0].id}}"
+                         alt="Business image" />
+                    <!-- Optional fallback if no image -->
+                    <img th:if="${business.images.isEmpty()}"
+                         th:src="@{/images/image2.png}"
+                         alt="No image available" />
+
                     <div class="business-info">
                         <h4 th:text="${business.businessName}">Bakery</h4>
                         <p th:text="${business.description}">Allergens: gluten, nuts, lactose</p>

@@ -15,53 +15,24 @@
         <div class="local-list">
             <h2>Local businesses</h2>
 
-            <!-- Business Card -->
-            <div class="business-card">
-                <img th:src="@{/images/strawberries.jpg}" alt="Strawberry Business">
-                <div class="business-info">
-                    <p>
-                        <a href="#"><strong>Strawberry Business</strong></a>
-                    </p>
-                    <p class="owner">Business Owner: <span>Maricica Danila</span></p>
-                </div>
-                <div class="business-actions">
-                    <button class="fav-btn">Add to fav ✓</button>
-                </div>
-            </div>
+            <div th:each="business : ${businesses}" class="business-card">
+                <img th:if="${!business.images.isEmpty()}"
+                     th:src="@{'/businesses/images/' + ${business.images[0].id}}"
+                     alt="Business image" />
+                <img th:if="${business.images.isEmpty()}"
+                     th:src="@{/images/emptyimage.png}"
+                     alt="No image available" />
 
-            <div class="business-card">
-                <img th:src="@{/images/plumbing.jpg}" alt="Plumbing">
                 <div class="business-info">
                     <p>
-                        <a href="#"><strong>Plumbing</strong></a>
+                        <a th:href="@{'/business/' + ${business.id}}">
+                            <strong th:text="${business.businessName}">Business Name</strong>
+                        </a>
                     </p>
-                    <p class="owner">Business Owner: <span>Marcel Paul</span></p>
-                </div>
-                <div class="business-actions">
-                    <button class="fav-btn">Add to fav ✓</button>
-                </div>
-            </div>
-
-            <div class="business-card">
-                <img th:src="@{/images/cabage.jpg}" alt="Cabbage Business">
-                <div class="business-info">
-                    <p>
-                        <a href="#"><strong>Cabbage Business</strong></a>
+                    <p class="owner">
+                        Business Owner:
+                        <span th:text="${business.owner.firstName + ' ' + business.owner.lastName}">Owner Name</span>
                     </p>
-                    <p class="owner">Business Owner: <span>Alex Popescu</span></p>
-                </div>
-                <div class="business-actions">
-                    <button class="fav-btn">Add to fav ✓</button>
-                </div>
-            </div>
-
-            <div class="business-card">
-                <img th:src="@{/images/farm.png}" alt="Fruit Business">
-                <div class="business-info">
-                    <p>
-                        <a href="#"><strong>Fruit Business</strong></a>
-                    </p>
-                    <p class="owner">Business Owner: <span>Andrei Alex</span></p>
                 </div>
                 <div class="business-actions">
                     <button class="fav-btn">Add to fav ✓</button>

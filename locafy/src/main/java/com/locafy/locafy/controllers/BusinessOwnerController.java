@@ -1,10 +1,10 @@
 package com.locafy.locafy.controllers;
 
 import com.locafy.locafy.domain.Business;
-import com.locafy.locafy.repositories.BusinessRepository;
 import org.springframework.ui.Model;
 import com.locafy.locafy.domain.BusinessOwner;
 import com.locafy.locafy.repositories.BusinessOwnerRepository;
+import com.locafy.locafy.repositories.BusinessRepository;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -14,20 +14,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class BusinessOwnerController {
 
     private final BusinessOwnerRepository businessOwnerRepository;
+    private final BusinessRepository businessRepository;
 
-    public BusinessOwnerController(BusinessOwnerRepository businessOwnerRepository) {
+    public BusinessOwnerController(BusinessOwnerRepository businessOwnerRepository, BusinessRepository businessRepository) {
         this.businessOwnerRepository = businessOwnerRepository;
+        this.businessRepository = businessRepository;
     }
 
     @GetMapping("/business-owner-home")
     public String businessOwnerHome(Model model, Principal principal) {
         BusinessOwner currentUser = businessOwnerRepository.findByUsername(principal.getName()).orElseThrow();
+        List<Business> businesses = businessRepository.findAll();
         model.addAttribute("owner", currentUser);
+        model.addAttribute("businesses", businesses);
         return "business-owner-home";
     }
 
