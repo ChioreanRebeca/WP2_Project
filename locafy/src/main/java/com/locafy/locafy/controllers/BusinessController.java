@@ -238,12 +238,11 @@ public class BusinessController {
     public String getBusinessOverview(@PathVariable Long id, Model model) {
         Business business = businessRepository.findById(id).orElseThrow();
 
-        // Fetch all images for the business
         List<Image> images = imageRepository.findByBusinessId(id);
-        business.setImages(images); // Attach images to the business object
+        business.setImages(images);
 
         model.addAttribute("business", business);
-        return "business-overview"; // This should be your Thymeleaf HTML file: business-overview.html
+        return "business-overview";
     }
 
 }
