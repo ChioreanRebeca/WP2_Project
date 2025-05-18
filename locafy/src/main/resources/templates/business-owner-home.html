@@ -25,7 +25,7 @@
 
                 <div class="business-info">
                     <p>
-                        <a th:href="@{'/business/' + ${business.id}}">
+                        <a th:href="@{'/businesses/business-overview/' + ${business.id}}">
                             <strong th:text="${business.businessName}">Business Name</strong>
                         </a>
                     </p>
@@ -33,6 +33,7 @@
                         Business Owner:
                         <span th:text="${business.owner.firstName + ' ' + business.owner.lastName}">Owner Name</span>
                     </p>
+                    <p th:text="${business.description}">Description</p>
                 </div>
             </div>
         </div>

@@ -1,12 +1,7 @@
 package com.locafy.locafy.controllers;
 
-import com.locafy.locafy.domain.Business;
-import com.locafy.locafy.domain.BusinessOwner;
-import com.locafy.locafy.domain.Image;
-import com.locafy.locafy.repositories.BusinessOwnerRepository;
-import com.locafy.locafy.repositories.BusinessRepository;
-import com.locafy.locafy.repositories.FavoritesRepository;
-import com.locafy.locafy.repositories.ImageRepository;
+import com.locafy.locafy.domain.*;
+import com.locafy.locafy.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +15,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/businesses") // it means it is on the class, and it is a prefix for all other links in this controller
@@ -30,6 +27,10 @@ public class BusinessController {
     private final BusinessOwnerRepository businessOwnerRepository;
     @Autowired
     private FavoritesRepository favoritesRepository; //this is one way to do it
+    @Autowired
+    private ReviewsRepository reviewsRepository;
+    @Autowired
+    private LocalRepository localRepository;
 
     public BusinessController(BusinessRepository businessRepository,
                               ImageRepository imageRepository,
@@ -233,6 +234,16 @@ public class BusinessController {
         return "redirect:/businesses/business-details/" + businessId;
     }
 
+    @GetMapping("/business-overview/{id}")
+    public String getBusinessOverview(@PathVariable Long id, Model model) {
+        Business business = businessRepository.findById(id).orElseThrow();
 
+        // Fetch all images for the business
+        List<Image> images = imageRepository.findByBusinessId(id);
+        business.setImages(images); // Attach images to the business object
+
+        model.addAttribute("business", business);
+        return "business-overview"; // This should be your Thymeleaf HTML file: business-overview.html
+    }
 
 }

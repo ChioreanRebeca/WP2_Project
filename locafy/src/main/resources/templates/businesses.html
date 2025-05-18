@@ -35,8 +35,12 @@
                          alt="No image available" />
 
                     <div class="business-info">
-                        <h4 th:text="${business.businessName}">Bakery</h4>
-                        <p th:text="${business.description}">Allergens: gluten, nuts, lactose</p>
+                        <p>
+                            <a th:href="@{'/businesses/business-overview/' + ${business.id}}">
+                                <strong th:text="${business.businessName}">Business Name</strong>
+                            </a>
+                        </p>
+                        <p th:text="${business.description}">Description</p>
                     </div>
                     <div class="business-actions">
                         <a class="edit-btn" th:href="@{/businesses/business-details/{id}(id=${business.id})}">Edit</a>
