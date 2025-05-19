@@ -7,7 +7,8 @@ import com.locafy.locafy.repositories.LocalRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,4 +37,17 @@ public class AdminController {
         model.addAttribute("owners", businessOwners);
         return "admin-page";
     }
+
+    @PostMapping("/admin-page/delete-owner/{id}")
+    public String deleteOwner(@PathVariable Long id) {
+        businessOwnerRepository.deleteById(id);
+        return "redirect:/admin-page";
+    }
+
+    @PostMapping("/admin-page/delete-local/{id}")
+    public String deleteLocal(@PathVariable Long id) {
+        localRepository.deleteById(id);
+        return "redirect:/admin-page";
+    }
+
 }

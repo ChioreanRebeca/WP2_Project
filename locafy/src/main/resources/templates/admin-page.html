@@ -21,6 +21,12 @@
     <div class="table-cell" data-label="ID" th:text="${local.id}"></div>
     <div class="table-cell" data-label="Username" th:text="${local.userName}"></div>
     <div class="table-cell" data-label="Email" th:text="${local.email}"></div>
+    <div class="table-cell">
+      <form th:action="@{/admin-page/delete-local/{id}(id=${local.id})}" method="post" onsubmit="return confirm('Are you sure you want to delete this local?');">
+        <button type="submit" class="delete-button">Delete</button>
+      </form>
+    </div>
+
   </div>
 </div>
 
@@ -42,6 +48,11 @@
       <ul>
         <li th:each="biz : ${owner.businesses}" th:text="${biz.businessName}"></li>
       </ul>
+    </div>
+    <div class="table-cell">
+      <form th:action="@{/admin-page/delete-owner/{id}(id=${owner.id})}" method="post" onsubmit="return confirm('Are you sure you want to delete this business owner and all their businesses?');">
+        <button type="submit" class="delete-button">Delete</button>
+      </form>
     </div>
   </div>
 </div>

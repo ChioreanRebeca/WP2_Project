@@ -941,7 +941,7 @@ body {
     cursor: pointer;
 }
 
-/* admin-tables.css */
+/* admin-page tables */
 
 .admin-table-container {
     display: flex;
@@ -1005,5 +1005,6 @@ body {
         margin-bottom: 0.2rem;
         color: #333;
     }
+
 }
 
