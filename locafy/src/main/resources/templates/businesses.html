@@ -29,9 +29,8 @@
                     <img th:if="${!business.images.isEmpty()}"
                          th:src="@{'/businesses/images/' + ${business.images[0].id}}"
                          alt="Business image" />
-                    <!-- Optional fallback if no image -->
                     <img th:if="${business.images.isEmpty()}"
-                         th:src="@{/images/image2.png}"
+                         th:src="@{/images/emptyimage.png}"
                          alt="No image available" />
 
                     <div class="business-info">

@@ -65,11 +65,4 @@ public class LocalsController {
         localRepository.save(currentLocal);
         return "redirect:/local-profile";
     }
-
-    @GetMapping("/favorites")
-    public String FavoritesPage(Model model, Principal principal) {
-        Local currentUser = localRepository.findByUserName(principal.getName()).orElseThrow();
-        model.addAttribute("local", currentUser);
-        return "favorites";
-    }
 }
