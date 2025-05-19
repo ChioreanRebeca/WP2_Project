@@ -7,3 +7,4 @@ package com.locafy.locafy.bootstrap;
 //so I can test it
 public class DataLoader {
 }
+

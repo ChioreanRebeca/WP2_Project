@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments</title>
+</head>
+<body>
+
+<div th:fragment="header">
+    <header class="site-header">
+        <a th:href="@{/}">
+            <div class="logo">Locafy</div>
+        </a>
+
+        <nav class="main-nav">
+            <ul>
+                <li>
+                    <a sec:authorize="hasRole('LOCAL')" th:href="@{/locals-home}">Local businesses</a>
+                    <a sec:authorize="hasRole('BUSINESS_OWNER')" th:href="@{/business-owner-home}">Local businesses</a>
+                </li>
+                <li><a th:href="@{/map}">Map</a></li>
+                <li><a th:href="@{/contact}">Contact us</a></li>
+                <li><a th:href="@{/about}">About us</a></li>
+                <li>
+                    <a sec:authorize="hasRole('LOCAL')" th:href="@{/local-profile}">Your profile</a>
+                    <a sec:authorize="hasRole('BUSINESS_OWNER')" th:href="@{/business-owner-profile}">Your profile</a>
+                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin-page}">Admin dashboard</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="header-buttons">
+            <div sec:authorize="isAnonymous()">
+                <a th:href="@{/signup}" class="secondary-btn">Sign Up</a>
+                <a th:href="@{/login}" class="primary-btn">Login</a>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post" style="display:inline;">
+                    <button type="submit" class="secondary-btn">Sign out</button>
+                </form>
+            </div>
+        </div>
+    </header>
+</div>
+
+<div th:fragment="footer">
+    <footer class="site-footer">
+        <div class="footer-links">
+            <div class="footer-column">
+                <h4>Locafy</h4>
+                <ul>
+                    <li><a th:href="@{/}">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Newsletter</a></li>
+                    <li><a href="#">Guidelines</a></li>
+                    <li><a href="#">Customer Help</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>2025 Locafy. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><img th:src="@{/images/Facebook.svg}" alt="Facebook"></a>
+                <a href="#"><img th:src="@{/images/Twitter.svg}" alt="Twitter"></a>
+                <a href="#"><img th:src="@{/images/Instagram.svg}" alt="Instagram"></a>
+                <a href="#"><img th:src="@{/images/LinkedIn.svg}" alt="LinkedIn"></a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+</body>
+</html>

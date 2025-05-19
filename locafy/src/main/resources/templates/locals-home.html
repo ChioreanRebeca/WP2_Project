@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Local Businesses</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="~{fragments/general :: header}"></div>
+
+<main class="local-main-content">
+    <section class="local-container">
+        <div class="local-list">
+            <h2>Local businesses</h2>
+
+            <div th:each="business : ${businesses}" class="business-card">
+                <img th:if="${!business.images.isEmpty()}"
+                     th:src="@{'/businesses/images/' + ${business.images[0].id}}"
+                     alt="Business image" />
+                <img th:if="${business.images.isEmpty()}"
+                     th:src="@{/images/emptyimage.png}"
+                     alt="No image available" />
+
+                <div class="business-info">
+                    <p>
+                        <a th:href="@{'/businesses/business-overview/' + ${business.id}}">
+                            <strong th:text="${business.businessName}">Business Name</strong>
+                        </a>
+                    </p>
+                    <p class="owner">
+                        Business Owner:
+                        <span th:text="${business.owner.firstName + ' ' + business.owner.lastName}">Owner Name</span>
+                    </p>
+                </div>
+                <form th:action="@{/favorites/add/{id}(id=${business.id})}" method="post">
+                    <button type="submit" class="fav-btn">Add to favorites ✓</button>
+                </form>
+            </div>
+        </div>
+
+        <aside class="profile-sidebar">
+            <a th:href="@{/local-profile}">
+            <div class="profile-card">
+                <img th:src="@{/images/blank-profile.png}" alt="Profile Picture">
+                <p class="profile-name" th:text="${local.firstName + ' ' + local.lastName}">Full Name</p>
+            </div>
+            </a>
+            <a th:href="@{/favorites}">
+            <div class="favourites-box">
+                <p>Your favourites</p>
+            </div>
+            </a>
+        </aside>
+    </section>
+</main>
+
+<!-- Footer -->
+<div th:replace="~{fragments/general :: footer}"></div>
+
+</body>
+</html>

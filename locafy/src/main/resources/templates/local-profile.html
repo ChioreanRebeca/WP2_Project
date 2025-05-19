@@ -1,10 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Local Profile</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
+
+<!-- Header -->
+<div th:replace="~{fragments/general :: header}"></div>
+
+<main class="profile-main-content">
+    <section class="profile-container">
+        <div class="profile-header">
+            <div>
+                <h2>Local</h2>
+                <h1 th:text="${local.firstName + ' ' + local.lastName}">First Last</h1>
+            </div>
+            <img th:src="@{/images/blank-profile.png}" alt="Profile Image">
+        </div>
+
+        <form th:action="@{/local-profile}" th:object="${local}" method="post" class="profile-form">
+            <div class="profile-form-section">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <p class="readonly-text" th:text="*{userName}"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <p class="readonly-text" th:text="*{firstName}"></p>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <p class="readonly-text" th:text="*{lastName}"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <p class="readonly-text" th:text="*{email}"></p>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Contact Number</label>
+                        <input type="text" th:field="*{phoneNumber}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" th:field="*{address}" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="password">New Password</label>
+                        <input type="password" id="password" name="password" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm New Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" />
+                    </div>
+                </div>
+                <div class="form-row">
+                <div class="profile-save">
+                    <a th:href="@{/local-profile}">
+                        <button type="submit" class="save-btn">Save</button>
+                    </a>
+                </div>
+                <div class="profile-save">
+                    <a th:href="@{/locals-home}">
+                        <button type="button" class="save-btn">Back to home</button>
+                    </a>
+                </div>
+                </div>
+            </div>
+        </form>
+    </section>
+</main>
+
+<!-- Footer -->
+<div th:replace="~{fragments/general :: footer}"></div>
 
 </body>
 </html>

@@ -1,0 +1,13 @@
+<svg width="25" height="22" viewBox="0 0 25 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Map pin" clip-path="url(#clip0_1_38)">
+<g id="Icon">
+<path d="M21.875 9.16666C21.875 15.5833 12.5 21.0833 12.5 21.0833C12.5 21.0833 3.125 15.5833 3.125 9.16666C3.125 6.97862 4.11272 4.8802 5.87087 3.33303C7.62903 1.78585 10.0136 0.916656 12.5 0.916656C14.9864 0.916656 17.371 1.78585 19.1291 3.33303C20.8873 4.8802 21.875 6.97862 21.875 9.16666Z" stroke="#1E1E1E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12.5 11.9167C14.2259 11.9167 15.625 10.6854 15.625 9.16666C15.625 7.64787 14.2259 6.41666 12.5 6.41666C10.7741 6.41666 9.375 7.64787 9.375 9.16666C9.375 10.6854 10.7741 11.9167 12.5 11.9167Z" stroke="#1E1E1E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_1_38">
+<rect width="25" height="22" fill="white"/>
+</clipPath>
+</defs>
+</svg>

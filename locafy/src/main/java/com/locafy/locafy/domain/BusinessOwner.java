@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity(name = "business_owner")
 @Data
 @NoArgsConstructor
@@ -28,7 +31,7 @@ public class BusinessOwner {
     private String password;
 
     @Column(nullable = false, columnDefinition = "Text")
-    private String fisrtName;
+    private String firstName;
 
     @Column(nullable = false, columnDefinition = "Text")
     private String lastName;
@@ -42,14 +45,17 @@ public class BusinessOwner {
     @Column(nullable = false, columnDefinition = "Text")
     private String address;
 
-    BusinessOwner(String username, String password, String firstName, String lastName, String email, String phoneNumber, String address) {
+    public BusinessOwner(String username, String password, String firstName, String lastName, String email, String phoneNumber, String address) {
         this.username = username;
         this.password = password;
-        this.fisrtName = firstName;
+        this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
     }
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Business> businesses = new ArrayList<>();
 
 }

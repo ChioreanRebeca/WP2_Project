@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>My Businesses</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+
+<!-- Header Fragment -->
+<div th:replace="~{fragments/general :: header}"></div>
+
+<main class="owner-dashboard">
+    <div class="dashboard-container">
+        <section class="owner-info">
+            <div class="owner-header">
+                <div>
+                    <h4>Business owner</h4>
+                    <h1 th:text="${owner.firstName + ' ' + owner.lastName}">Full name</h1>
+                </div>
+                <img th:src="@{/images/blank-profile.png}" alt="Owner image" />
+            </div>
+
+            <section class="businesses-section">
+                <h3>Your Businesses:</h3>
+                <a class="add-business" th:href="@{/businesses/business-details}">Add Business +</a>
+
+                <div class="business-card owner-card" th:each="business : ${owner.businesses}">
+                    <img th:if="${!business.images.isEmpty()}"
+                         th:src="@{'/businesses/images/' + ${business.images[0].id}}"
+                         alt="Business image" />
+                    <img th:if="${business.images.isEmpty()}"
+                         th:src="@{/images/emptyimage.png}"
+                         alt="No image available" />
+
+                    <div class="business-info">
+                        <p>
+                            <a th:href="@{'/businesses/business-overview/' + ${business.id}}">
+                                <strong th:text="${business.businessName}">Business Name</strong>
+                            </a>
+                        </p>
+                        <p th:text="${business.description}">Description</p>
+                    </div>
+                    <div class="business-actions">
+                        <a class="edit-btn" th:href="@{/businesses/business-details/{id}(id=${business.id})}">Edit</a>
+                        <form method="post" th:action="@{/businesses/remove/{id}(id=${business.id})}">
+                            <button class="remove-btn" type="submit">Remove ✖</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <aside class="profile-summary">
+            <div class="profile-card">
+                <h4>Information summary</h4>
+                <p><strong>Title:</strong> Business Owner</p>
+                <p><strong>Phone:</strong> <span th:text="${owner.phoneNumber}">+407298309827</span></p>
+                <p><strong>Email:</strong> <span th:text="${owner.email}">alexpopescuowner@gmail.com</span></p>
+                <p><strong>Address:</strong> <span th:text="${owner.address}">CASABLANCA</span></p>
+                <div class="certified-badge">
+                    <img src="/images/badge.png" alt="Certified Business Badge" />
+                </div>
+                <a class="change-profile-btn" th:href="@{/business-owner-profile}">
+                    Edit Profile
+                </a>
+            </div>
+        </aside>
+    </div>
+</main>
+
+<!-- Footer Fragment -->
+<div th:replace="~{fragments/general :: footer}"></div>
+</body>
+</html>

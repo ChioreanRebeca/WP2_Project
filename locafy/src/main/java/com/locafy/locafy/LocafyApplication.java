@@ -6,7 +6,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.ClassPathResource;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
@@ -18,29 +23,31 @@ public class LocafyApplication {
 	@Bean
 	CommandLineRunner commandLineRunner (LocalRepository localRepository, BusinessRepository businessRepository,
 										 FavoritesRepository favoritesRepository, BusinessOwnerRepository businessOwnerRepository,
-										 ReviewsRepository reviewsRepository) {
+										 ReviewsRepository reviewsRepository, ImageRepository imageRepository, AdminRepository adminRepository) {
 		return args -> {
 
 			/// locals logic
 			Local local1 = new Local(
 					"george123",
 					"george123@gmail.com",
-					"123abc",
+					"{noop}123abc",
 					"George",
 					"Bush",
 					"+40 723 213 5432",
 					"Bcharest Sector6, street, number 123"
 			);
+			local1.getRoles().add("ROLE_LOCAL");
 
 			Local local2 = new Local(
 					"oana",
 					"oanamaria@gmail.com",
-					"4oana32432",
+					"{noop}4oana32432", //{noop} is for testing purposes so that I don't have to provide an encoded passwd
 					"Oana",
 					"Maria",
 					"+40 723 543 1343",
 					"Pitesti, street, nr. 234"
 			);
+			local2.getRoles().add("ROLE_LOCAL");  // Hardcoding the ROLE_LOCAL directly
 
 
 
@@ -51,8 +58,8 @@ public class LocafyApplication {
 			///business owner logic
 			BusinessOwner owner1 = new BusinessOwner();
 			owner1.setUsername("biz123");
-			owner1.setPassword("pass123");
-			owner1.setFisrtName("John");
+			owner1.setPassword("{noop}pass123");
+			owner1.setFirstName("John");
 			owner1.setLastName("Doe");
 			owner1.setEmail("john@example.com");
 			owner1.setPhoneNumber("+40 700 000 000");
@@ -60,25 +67,25 @@ public class LocafyApplication {
 
 			BusinessOwner owner2 = new BusinessOwner();
 			owner2.setUsername("startupgirl");
-			owner2.setPassword("securepass");
-			owner2.setFisrtName("Ana");
+			owner2.setPassword("{noop}securepass");
+			owner2.setFirstName("Ana");
 			owner2.setLastName("Popescu");
 			owner2.setEmail("ana@startup.ro");
 			owner2.setPhoneNumber("+40 711 222 333");
 			owner2.setAddress("Cluj, str. Observatorului, nr. 15");
 
-			businessOwnerRepository.save(owner1);
+			BusinessOwner savedOwner1 = businessOwnerRepository.save(owner1);
 			businessOwnerRepository.save(owner2);
 
 
 			///business logic
 			BusinessOwner owner = new BusinessOwner();
 			owner.setUsername("ceoAnna");
-			owner.setFisrtName("Anna");
+			owner.setFirstName("Anna");
 			owner.setLastName("Ionescu");
 			owner.setEmail("anna@startup.ro");
 			owner.setPhoneNumber("+40 700 111 222");
-			owner.setPassword("safePass123");
+			owner.setPassword("{noop}safePass123");
 			owner.setAddress("Cluj, str. Observatorului, nr. 15");
 
 			BusinessOwner savedOwner = businessOwnerRepository.save(owner);
@@ -88,17 +95,96 @@ public class LocafyApplication {
 			biz1.setPhoneNumber("+40 711 123 456");
 			biz1.setEmail("coffee@anna.ro");
 			biz1.setWebsite("www.annascoffee.ro");
+			biz1.setDescription("Coffee");
 			biz1.setOwner(savedOwner);
 
 			Business biz2 = new Business();
 			biz2.setBusinessName("Anna’s Bakery");
-			biz2.setPhoneNumber("+40 711 999 888");
+			biz2.setPhoneNumber("+40 711 999 788");
 			biz2.setEmail("bakery@anna.ro");
 			biz2.setWebsite("www.annasbakery.ro");
+			biz2.setDescription("Bakery");
 			biz2.setOwner(savedOwner);
 
-			businessRepository.saveAll(List.of(biz1, biz2));
+			Business biz3 = new Business();
+			biz3.setBusinessName("Anna’s Cabbage Farm");
+			biz3.setPhoneNumber("+40 711 999 777");
+			biz3.setEmail("cabbages@anna.ro");
+			biz3.setWebsite("www.annascabbages.ro");
+			biz3.setDescription("Good delicious cabbages");
+			biz3.setOwner(savedOwner);
 
+			//business from owner1
+			Business biz4 = new Business();
+			biz4.setBusinessName("Separate Business");
+			biz4.setPhoneNumber("+40 711 999 775");
+			biz4.setEmail("business@doe.ro");
+			biz4.setWebsite("www.doebusiness.ro");
+			biz4.setDescription("Good productive business");
+			biz4.setOwner(savedOwner1);
+
+			businessRepository.saveAll(List.of(biz1, biz2, biz3, biz4));
+
+
+			/// images for business 3
+			List<Image> images = new ArrayList<>();
+
+			try {
+				String[] fileNames = {"cabbage1.png", "cabbage2.png", "cabbage3.png", "cabbage4.png", "cabbage5.png"};
+				for (String fileName : fileNames) {
+					ClassPathResource imgFile = new ClassPathResource("static/images/" + fileName);
+					byte[] imageData = imgFile.getInputStream().readAllBytes();
+					Image image = new Image();
+					image.setData(imageData);
+					image.setBusiness(biz3);
+					images.add(image);
+				}
+				imageRepository.saveAll(images);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			/// image for biz1: Coffee
+			try {
+				ClassPathResource imgFile = new ClassPathResource("static/images/coffee.png");
+				byte[] imageData = imgFile.getInputStream().readAllBytes();
+
+				Image image = new Image();
+				image.setData(imageData);
+				image.setBusiness(biz1);
+
+				imageRepository.save(image);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			/// image for biz2: Bakery
+			try {
+				ClassPathResource imgFile = new ClassPathResource("static/images/bakery.png");
+				byte[] imageData = imgFile.getInputStream().readAllBytes();
+
+				Image image = new Image();
+				image.setData(imageData);
+				image.setBusiness(biz2);
+
+				imageRepository.save(image);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			/// image for biz4 owner1: Separate
+			try {
+				ClassPathResource imgFile = new ClassPathResource("static/images/justbusiness.png");
+				byte[] imageData = imgFile.getInputStream().readAllBytes();
+
+				Image image = new Image();
+				image.setData(imageData);
+				image.setBusiness(biz4);
+
+				imageRepository.save(image);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 
 
 			//George Bush and Anna's Coffee
@@ -117,7 +203,7 @@ public class LocafyApplication {
 				favoritesRepository.save(favorite1);
 			}
 
-			///review logic
+			/*///review logic
 			if (!locals.isEmpty() && !businesses.isEmpty()) {
 				Reviews review = new Reviews();
 				review.setMessage("Great service and friendly staff! Loved Anna's Coffee!");
@@ -126,7 +212,11 @@ public class LocafyApplication {
 				review.setBusiness(businesses.get(0));
 
 				reviewsRepository.save(review);
-			}
+			}*/
+
+			/// add admin
+			Admin admin = new Admin("admin", "{noop}123456");
+			adminRepository.save(admin);
 
 		};
 	}

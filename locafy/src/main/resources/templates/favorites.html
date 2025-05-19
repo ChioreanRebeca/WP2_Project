@@ -1,10 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Favorites</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
+
+<!-- Header Fragment -->
+<div th:replace="~{fragments/general :: header}"></div>
+
+<main class="local-main-content">
+    <section class="local-container">
+
+        <!-- Favorites List (Left side) -->
+        <div class="local-list">
+            <h2>Your Favorites</h2>
+
+            <!-- No Favorites Message -->
+            <div th:if="${#lists.isEmpty(favorites)}" class="no-favorites">
+                <p>You have no favorites yet.
+                    <a th:href="@{/locals-home}">Go to local businesses</a> and select a few.
+                </p>
+            </div>
+
+            <!-- Favorites Loop -->
+            <div th:if="${!#lists.isEmpty(favorites)}">
+                <div th:each="favorite : ${favorites}" class="business-card">
+                    <img th:if="${!#lists.isEmpty(favorite.business.images)}"
+                         th:src="@{'/businesses/images/' + ${favorite.business.images[0].id}}"
+                         alt="Business image" />
+                    <img th:if="${#lists.isEmpty(favorite.business.images)}"
+                         th:src="@{/images/emptyimage.png}"
+                         alt="No image available" />
+
+                    <div class="business-info">
+                        <p>
+                            <a th:href="@{/business/{id}(id=${favorite.business.id})}">
+                                <strong th:text="${favorite.business.businessName}">Business Name</strong>
+                            </a>
+                        </p>
+                        <p class="owner">
+                            Business Owner:
+                            <span th:text="${favorite.business.owner.firstName + ' ' + favorite.business.owner.lastName}">
+                                Owner Name
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="business-actions">
+                        <form th:action="@{/favorites/delete/{id}(id=${favorite.id})}" method="post"
+                              th:id="'delete-form-' + ${favorite.id}" style="display:none;"></form>
+                        <button class="fav-btn"
+                                th:attr="data-id=${favorite.id}"
+                                onclick="deleteFavorite(this)">
+                            Remove ✕
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Sidebar (Right side) -->
+        <aside class="profile-sidebar">
+            <a th:href="@{/local-profile}">
+                <div class="profile-card">
+                    <img th:src="@{/images/blank-profile.png}" alt="Profile Picture">
+                    <p class="profile-name" th:text="${local.firstName + ' ' + local.lastName}">Full Name</p>
+                </div>
+            </a>
+            <a th:href="@{/favorites}">
+                <div class="favourites-box">
+                    <p>Your favourites</p>
+                </div>
+            </a>
+        </aside>
+
+    </section>
+</main>
+
+
+<!-- Footer Fragment -->
+<div th:replace="~{fragments/general :: footer}"></div>
+
+<script>
+    function deleteFavorite(button) {
+        const id = button.getAttribute('data-id');
+        const form = document.getElementById('delete-form-' + id);
+        if (confirm("Are you sure you want to remove this favorite?")) {
+            form.submit();
+        }
+    }
+</script>
 
 </body>
 </html>

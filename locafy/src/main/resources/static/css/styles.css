@@ -1,0 +1,1010 @@
+/* Reset and base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Header */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #004d40;
+    color: white;
+}
+.site-header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.main-nav ul {
+    display: flex;
+    gap: 1rem;
+}
+.main-nav li {
+    list-style: none;
+}
+.header-buttons button {
+    margin-left: 0.5rem;
+}
+.primary-btn, .secondary-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.primary-btn {
+    background-color: #26a69a;
+    color: white;
+}
+.secondary-btn {
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+}
+
+/* Main content */
+.main-content {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+.hero {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+.hero-text {
+    flex: 1;
+}
+.hero-image {
+    flex: 1;
+}
+.help-local {
+    background-color: #e0f2f1;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 3rem;
+}
+.cards {
+    display: flex;
+    gap: 1rem;
+}
+.card {
+    flex: 1;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+.testimonial, .testimonial.owner {
+    margin: 2rem 0;
+    padding: 2rem;
+    background-color: #fff;
+    border-left: 5px solid #26a69a;
+    font-style: italic;
+}
+.discover img {
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+/* Footer */
+.site-footer {
+    background-color: #004d40;
+    color: white;
+    padding: 2rem;
+}
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+.footer-column h4 {
+    margin-bottom: 0.5rem;
+}
+.footer-column ul {
+    list-style: none;
+}
+.footer-column li {
+    margin-bottom: 0.3rem;
+}
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+.social-links a {
+    margin-left: 0.5rem;
+}
+
+/* Signup and Login Pages */
+.signup-page {
+    max-width: 800px;
+    margin: 3rem auto;
+    background-color: #e0f2f1;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.signup-form-section h1 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+}
+
+.signup-form-section p {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-column {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="password"] {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.role-selection {
+    display: flex;
+    gap: 1rem;
+}
+
+.role-selection label {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.primary-btn {
+    align-self: center;
+    width: 120px;
+}
+
+.login-link {
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.login-link a {
+    color: #26a69a;
+}
+
+/* Local Businesses Page */
+.local-main-content {
+    background-color: #d8e3dc;
+    padding: 2rem;
+}
+
+.local-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 2rem;
+}
+
+.local-list {
+    flex: 3;
+}
+
+.local-list h2 {
+    color: #2e7d32;
+    margin-bottom: 1.5rem;
+}
+
+.business-card {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem;
+}
+
+.business-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 1rem;
+    border-radius: 8px;
+}
+
+.business-info {
+    flex: 2;
+}
+
+.owner span {
+    color: #2e7d32;
+}
+
+.business-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.details-link {
+    color: #004d40;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.fav-btn {
+    background-color: white;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.profile-sidebar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile-card {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.profile-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-name {
+    margin-top: 0.5rem;
+    font-weight: bold;
+}
+
+.favourites-box {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Profile Page */
+.profile-main-content {
+    background-color: #1e2722;
+    padding: 3rem 2rem;
+    color: #000;
+}
+
+.profile-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #d8e3dc;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.profile-header h2 {
+    color: #2e7d32;
+    margin: 0;
+}
+
+.profile-header h1 {
+    font-size: 2rem;
+    margin-top: 0.5rem;
+}
+
+.profile-header img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.profile-form {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 0 0 8px 8px;
+    gap: 2rem;
+}
+
+.profile-form-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.profile-form label {
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+.profile-form input,
+.profile-form textarea {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    resize: none;
+}
+
+.profile-save {
+    width: 100%;
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.save-btn {
+    background-color: #b370f0;
+    color: white;
+    border: none;
+    padding: 0.6rem 2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.readonly-text {
+    padding: 0.5rem;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* Favorites Page */
+.favorites-section {
+    padding: 40px;
+    background-color: #dfe7de;
+    min-height: 60vh;
+}
+
+.favorites-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.no-favorites {
+    font-size: 18px;
+    color: #333;
+    margin-top: 20px;
+}
+
+.no-favorites a {
+    color: #5c8f45;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.favorites-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.favorite-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f6f8f2;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.favorite-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.favorite-info {
+    flex: 1;
+}
+
+.favorite-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.favorite-owner {
+    font-size: 15px;
+    color: #4b8749;
+}
+
+.favorite-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.favorite-actions a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.delete-btn {
+    background-color: #e46767;
+    color: white;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.delete-btn:hover {
+    background-color: #c95252;
+}
+
+/* Map content */
+.main-content {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+.hero {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+.hero-text {
+    flex: 1;
+}
+.hero-image {
+    flex: 1;
+}
+.help-local {
+    background-color: #e0f2f1;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 3rem;
+}
+.cards {
+    display: flex;
+    gap: 1rem;
+}
+.card {
+    flex: 1;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+.testimonial, .testimonial.owner {
+    margin: 2rem 0;
+    padding: 2rem;
+    background-color: #fff;
+    border-left: 5px solid #26a69a;
+    font-style: italic;
+}
+.discover img {
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+/* Business Owner Dashboard Styles */
+.owner-dashboard {
+    background-color: #1e2722;
+    padding: 3rem 2rem;
+    color: #000;
+}
+
+.dashboard-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 2rem;
+}
+
+.owner-info {
+    flex: 3;
+    background-color: #d8e3dc;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.owner-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.owner-header img {
+    width: 100px;
+    height: 100px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.businesses-section h3 {
+    color: #2e7d32;
+    margin-bottom: 0.5rem;
+}
+
+.add-business {
+    display: inline-block;
+    color: #004d40;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.owner-card {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.owner-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+
+.owner-card .business-info {
+    flex: 2;
+}
+
+.owner-card .business-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-end;
+    flex: 1;
+}
+
+.edit-btn,
+.remove-btn,
+.change-profile-btn {
+    background-color: #26a69a;
+    color: white;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+.remove-btn {
+    background-color: #d9534f;
+}
+
+.remove-btn:hover {
+    background-color: #c9302c;
+}
+
+.profile-summary {
+    flex: 1;
+}
+
+.profile-card {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.profile-card p {
+    margin-bottom: 0.5rem;
+}
+
+.certified-badge {
+    margin: 1rem 0;
+    font-weight: bold;
+    color: #2e7d32;
+}
+
+.certified-badge img {
+    width: 60px;
+    height: 60px;
+}
+
+.change-profile-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    font-weight: bold;
+    background-color: #4caf50;
+}
+
+/*Business Details*/
+
+/*body {
+    font-family: 'Arial', sans-serif;
+    background-color: #202D26;
+    color: #1D3628;
+    margin: 0;
+    padding: 0;
+}*/
+
+main.business-profile {
+    background-color: #E0E7E2;
+    margin: 2rem auto;
+    padding: 2rem;
+    max-width: 900px;
+    border-radius: 8px;
+}
+
+.info-section h2 {
+    color: #3A6B2E;
+}
+
+.info-card {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.certified-badge {
+    margin-top: 1rem;
+    background: #d6f5d6;
+    padding: 0.5rem;
+    border-radius: 50%;
+    text-align: center;
+    width: 120px;
+    height: 120px;
+    line-height: 120px;
+    font-weight: bold;
+    color: #3A6B2E;
+}
+
+.images-section {
+    margin-top: 2rem;
+}
+
+.images-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.image-box img {
+    width: 150px;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.description-section textarea {
+    background: white;
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Styles the row that contains the Business Name and buttons */
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+/* Ensures the h2 has no extra margin and can grow */
+.header-row h2 {
+    margin: 0;
+    flex-grow: 1;
+}
+
+/* Aligns Save and Go Back buttons */
+.header-row .actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+
+/*business-overview page*/
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f5ef;
+    margin: 0;
+    padding: 0;
+}
+
+.business-details {
+    padding: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.info-images-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.info-summary {
+    flex: 1;
+}
+
+.info-box {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+}
+
+.certified-tag {
+    margin-top: 1rem;
+    color: #4CAF50;
+    font-weight: bold;
+    border: 2px solid #4CAF50;
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    border-radius: 50px;
+}
+
+.images {
+    flex: 1;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+}
+
+.image-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.description {
+    margin-top: 2rem;
+
+}
+
+.ratings {
+    margin-top: 2rem;
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+}
+
+.average-rating {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.average-rating .stars span:first-child {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.rating-bars {
+    margin-top: 1rem;
+}
+
+.rating-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0.3rem 0;
+}
+
+.bar-container {
+    background-color: #ddd;
+    flex: 1;
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    background-color: #4CAF50;
+    height: 100%;
+}
+
+.reviews {
+    margin-top: 2rem;
+}
+
+.review {
+    border-top: 1px solid #ccc;
+    padding: 1rem 0;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.submit-review {
+    margin-top: 2rem;
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+}
+
+.submit-review textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: vertical;
+}
+
+.submit-review .star-input {
+    margin-bottom: 1rem;
+}
+
+.submit-review button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* admin-page tables */
+
+.admin-table-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    font-family: Arial, sans-serif;
+}
+
+.table-header,
+.table-row {
+    display: flex;
+    flex-wrap: wrap;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.table-header {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+.table-cell {
+    flex: 1 1 25%;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    min-width: 150px;
+}
+
+.table-cell ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.table-cell li {
+    list-style: disc;
+}
+
+@media (max-width: 768px) {
+    .table-header {
+        display: none;
+    }
+
+    .table-row {
+        flex-direction: column;
+        border-left: 4px solid #4caf50;
+        padding: 1rem;
+    }
+
+    .table-cell {
+        flex: 1 1 100%;
+        padding: 0.3rem 0;
+    }
+
+    .table-cell::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 0.2rem;
+        color: #333;
+    }
+
+}
+
