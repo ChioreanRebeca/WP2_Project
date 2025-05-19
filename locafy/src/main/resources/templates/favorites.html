@@ -32,7 +32,7 @@
     <div th:if="${!#lists.isEmpty(favorites)}" class="favorites-list">
         <div th:each="favorite : ${favorites}" class="favorite-card">
             <img th:if="${!#lists.isEmpty(favorite.business.images)}"
-                 th:src="@{'/images/' + ${favorite.business.images[0].id}}"
+                 th:src="@{'/businesses/images/' + ${favorite.business.images[0].id}}"
                  alt="Business Image" />
             <img th:if="${#lists.isEmpty(favorite.business.images)}"
                  th:src="@{/images/emptyimage.png}"

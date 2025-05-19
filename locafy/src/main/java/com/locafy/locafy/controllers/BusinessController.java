@@ -22,22 +22,22 @@ import java.util.stream.Collectors;
 @RequestMapping("/businesses") // it means it is on the class, and it is a prefix for all other links in this controller
 public class BusinessController {
 
-    private final BusinessRepository businessRepository; //this is another way to do it
+    private final BusinessRepository businessRepository; // better than autowired
     private final ImageRepository imageRepository;
     private final BusinessOwnerRepository businessOwnerRepository;
-    @Autowired
-    private FavoritesRepository favoritesRepository; //this is one way to do it
-    @Autowired
-    private ReviewsRepository reviewsRepository;
-    @Autowired
-    private LocalRepository localRepository;
+    private final FavoritesRepository favoritesRepository;
+    private final LocalRepository localRepository;
 
     public BusinessController(BusinessRepository businessRepository,
                               ImageRepository imageRepository,
-                              BusinessOwnerRepository businessOwnerRepository) {
+                              BusinessOwnerRepository businessOwnerRepository,
+                              FavoritesRepository favoritesRepository,
+                              LocalRepository localRepository) {
         this.businessRepository = businessRepository;
         this.imageRepository = imageRepository;
         this.businessOwnerRepository = businessOwnerRepository;
+        this.favoritesRepository = favoritesRepository;
+        this.localRepository = localRepository;
     }
 
     // Show list of businesses for logged-in owner
@@ -244,5 +244,27 @@ public class BusinessController {
         model.addAttribute("business", business);
         return "business-overview";
     }
+
+    @GetMapping("/favorites")
+    public String showFavorites(Model model, Principal principal) {
+        // Get logged-in local user
+        Local localUser = localRepository.findByUserName(principal.getName())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // Find favorites for this user
+        List<Favorites> favorites = favoritesRepository.findByLocalUser(localUser);
+
+        // Attach the first image for each favorite business
+        for (Favorites favorite : favorites) {
+            List<Image> images = imageRepository.findByBusinessId(favorite.getBusiness().getId());
+            favorite.getBusiness().setImages(images); // you can access the first image in Thymeleaf using [0]
+        }
+
+        model.addAttribute("local", localUser);
+        model.addAttribute("favorites", favorites);
+
+        return "favorites";
+    }
+
 
 }
