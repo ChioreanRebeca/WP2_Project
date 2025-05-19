@@ -34,9 +34,9 @@
                         <span th:text="${business.owner.firstName + ' ' + business.owner.lastName}">Owner Name</span>
                     </p>
                 </div>
-                <div class="business-actions">
-                    <button class="fav-btn">Add to fav ✓</button>
-                </div>
+                <form th:action="@{/favorites/add/{id}(id=${business.id})}" method="post">
+                    <button type="submit" class="fav-btn">Add to favorites ✓</button>
+                </form>
             </div>
         </div>
 

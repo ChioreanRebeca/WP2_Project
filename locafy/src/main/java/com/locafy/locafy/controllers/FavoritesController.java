@@ -1,5 +1,6 @@
 package com.locafy.locafy.controllers;
 
+import com.locafy.locafy.domain.Business;
 import com.locafy.locafy.domain.Favorites;
 import com.locafy.locafy.domain.Image;
 import com.locafy.locafy.domain.Local;
@@ -72,5 +73,30 @@ public class FavoritesController {
         redirectAttributes.addFlashAttribute("success", "Favorite removed successfully.");
         return "redirect:/favorites";
     }
+
+    @PostMapping("/favorites/add/{id}")
+    public String addFavorite(@PathVariable Long id, Principal principal, RedirectAttributes redirectAttributes) {
+        Local localUser = localRepository.findByUserName(principal.getName())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        Business business = businessRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Business not found"));
+
+        // Check if favorite already exists
+        boolean alreadyExists = favoritesRepository.findByLocalUserAndBusiness(localUser, business).isPresent();
+        if (alreadyExists) {
+            redirectAttributes.addFlashAttribute("error", "Business is already in your favorites.");
+            return "redirect:/locals-home";
+        }
+
+        Favorites favorite = new Favorites();
+        favorite.setLocalUser(localUser);
+        favorite.setBusiness(business);
+        favoritesRepository.save(favorite);
+
+        redirectAttributes.addFlashAttribute("success", "Business added to favorites!");
+        return "redirect:/locals-home";
+    }
+
 
 }
