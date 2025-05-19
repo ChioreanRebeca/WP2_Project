@@ -941,3 +941,69 @@ body {
     cursor: pointer;
 }
 
+/* admin-tables.css */
+
+.admin-table-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    font-family: Arial, sans-serif;
+}
+
+.table-header,
+.table-row {
+    display: flex;
+    flex-wrap: wrap;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.table-header {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+.table-cell {
+    flex: 1 1 25%;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    min-width: 150px;
+}
+
+.table-cell ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.table-cell li {
+    list-style: disc;
+}
+
+@media (max-width: 768px) {
+    .table-header {
+        display: none;
+    }
+
+    .table-row {
+        flex-direction: column;
+        border-left: 4px solid #4caf50;
+        padding: 1rem;
+    }
+
+    .table-cell {
+        flex: 1 1 100%;
+        padding: 0.3rem 0;
+    }
+
+    .table-cell::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 0.2rem;
+        color: #333;
+    }
+}
+

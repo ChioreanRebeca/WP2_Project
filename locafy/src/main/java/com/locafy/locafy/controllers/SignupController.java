@@ -40,15 +40,14 @@ public class SignupController {
                     form.getUsername(), form.getEmail(), form.getPassword(),
                     form.getFirstName(), form.getLastName(), form.getPhoneNumber(), form.getAddress()
             );
-            local.getRoles().add("ROLE_LOCAL");
             localRepository.save(local);
 
         } else if ("BUSINESS_OWNER".equalsIgnoreCase(form.getRole())) {
-            BusinessOwner bo = new BusinessOwner(
+            BusinessOwner bOwner = new BusinessOwner(
                     form.getUsername(), form.getPassword(), form.getFirstName(), form.getLastName(),
                     form.getEmail(), form.getPhoneNumber(), form.getAddress()
             );
-            businessOwnerRepository.save(bo);
+            businessOwnerRepository.save(bOwner);
         }
 
         return "redirect:/login";

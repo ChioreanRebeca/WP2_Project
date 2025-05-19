@@ -23,7 +23,7 @@ public class LocafyApplication {
 	@Bean
 	CommandLineRunner commandLineRunner (LocalRepository localRepository, BusinessRepository businessRepository,
 										 FavoritesRepository favoritesRepository, BusinessOwnerRepository businessOwnerRepository,
-										 ReviewsRepository reviewsRepository, ImageRepository imageRepository) {
+										 ReviewsRepository reviewsRepository, ImageRepository imageRepository, AdminRepository adminRepository) {
 		return args -> {
 
 			/// locals logic
@@ -213,6 +213,10 @@ public class LocafyApplication {
 
 				reviewsRepository.save(review);
 			}
+
+			/// add admin
+			Admin admin = new Admin("admin", "{noop}123456");
+			adminRepository.save(admin);
 
 		};
 	}
