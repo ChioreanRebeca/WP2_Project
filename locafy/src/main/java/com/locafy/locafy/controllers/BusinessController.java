@@ -2,21 +2,17 @@ package com.locafy.locafy.controllers;
 
 import com.locafy.locafy.domain.*;
 import com.locafy.locafy.repositories.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/businesses") // it means it is on the class, and it is a prefix for all other links in this controller
@@ -245,26 +241,22 @@ public class BusinessController {
         return "business-overview";
     }
 
-    @GetMapping("/favorites")
+   /* @GetMapping("/favorites")
     public String showFavorites(Model model, Principal principal) {
-        // Get logged-in local user
         Local localUser = localRepository.findByUserName(principal.getName())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        // Find favorites for this user
         List<Favorites> favorites = favoritesRepository.findByLocalUser(localUser);
 
-        // Attach the first image for each favorite business
         for (Favorites favorite : favorites) {
             List<Image> images = imageRepository.findByBusinessId(favorite.getBusiness().getId());
-            favorite.getBusiness().setImages(images); // you can access the first image in Thymeleaf using [0]
+            favorite.getBusiness().setImages(images);
         }
-
         model.addAttribute("local", localUser);
         model.addAttribute("favorites", favorites);
 
         return "favorites";
-    }
+    }*/
 
 
 }
