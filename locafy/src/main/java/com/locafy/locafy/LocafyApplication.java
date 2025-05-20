@@ -203,17 +203,6 @@ public class LocafyApplication {
 				favoritesRepository.save(favorite1);
 			}
 
-			/*///review logic
-			if (!locals.isEmpty() && !businesses.isEmpty()) {
-				Reviews review = new Reviews();
-				review.setMessage("Great service and friendly staff! Loved Anna's Coffee!");
-				review.setStars(4.5);
-				review.setLocal(locals.get(0));
-				review.setBusiness(businesses.get(0));
-
-				reviewsRepository.save(review);
-			}*/
-
 			/// add admin
 			Admin admin = new Admin("admin", "{noop}123456");
 			adminRepository.save(admin);
