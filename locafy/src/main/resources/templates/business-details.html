@@ -6,16 +6,13 @@
 </head>
 <body>
 
-<!-- Header Fragment -->
 <div th:replace="~{fragments/general :: header}"></div>
 
 <main class="business-profile">
 
-    <!-- Main form for business details and uploading new images -->
     <form th:action="@{/businesses/save}" method="post" enctype="multipart/form-data">
         <input type="hidden" th:name="id" th:value="${business.id}" />
 
-        <!-- Business name and buttons row -->
         <div class="header-row">
             <h2>
                 <label>
@@ -76,14 +73,14 @@
                 </div>
             </div>
 
-            <!-- New image upload -->
             <input type="file" name="files" multiple/>
         </section>
 
         <section class="description-section">
             <h3>Description</h3>
             <label>
-                <textarea name="description" rows="5" placeholder="Business description...">[[${business.description}]]</textarea>
+                <textarea name="description" rows="5" placeholder="Business description..."
+                          th:text="${business.description}"></textarea>
             </label>
         </section>
 
@@ -91,7 +88,6 @@
 
 </main>
 
-<!-- Footer Fragment -->
 <div th:replace="~{fragments/general :: footer}"></div>
 
 </body>

@@ -92,7 +92,6 @@ class LocalControllerTest {
 
         assertThat(redirect).isEqualTo("redirect:/local-profile");
 
-        // Capture saved local to check updated fields
         ArgumentCaptor<Local> localCaptor = ArgumentCaptor.forClass(Local.class);
         verify(localRepository).save(localCaptor.capture());
         Local savedLocal = localCaptor.getValue();

@@ -17,7 +17,7 @@
                 <h2>Business Owner</h2>
                 <h1 th:text="${owner.firstName + ' ' + owner.lastName}">First Last</h1>
             </div>
-            <img th:src="@{/images/blank-profile.png}" alt="Profile Image">
+            <img th:src="@{/images/sample-profile-picture.png}" alt="Profile Image">
         </div>
 
         <form th:action="@{/business-owner-profile}" th:object="${owner}" method="post" class="profile-form">

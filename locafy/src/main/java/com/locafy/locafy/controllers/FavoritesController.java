@@ -63,7 +63,6 @@ public class FavoritesController {
             return "redirect:/favorites";
         }
 
-        // Check if favorite belongs to the logged-in user
         if (!favorite.getLocalUser().getUserName().equals(principal.getName())) {
             redirectAttributes.addFlashAttribute("error", "Unauthorized action.");
             return "redirect:/favorites";
