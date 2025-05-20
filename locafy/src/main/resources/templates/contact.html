@@ -3,12 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Contact Us</title>
+    <link rel="stylesheet" th:href="@{/css/contactstyle.css}">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
 <div th:replace="~{fragments/general :: header}"></div>
 
-<p>This is the contact us page</p>
+
+<main class="contact-section">
+    <h1>Contact Us</h1>
+
+    <p>We’d love to hear from you! Whether you’re a local business with questions about listing your services, a customer looking for help, or just curious about Locafy, we’re here to assist.</p>
+
+    <h2>Ways to Reach Us</h2>
+    <ul>
+        <li><strong>Email:</strong> support@locafy.com</li>
+        <li><strong>Phone:</strong> +1 (800) 555-LOCA</li>
+        <li><strong>Address:</strong> 123 Main Street, Localtown, USA</li>
+    </ul>
+
+    <h2>Send Us a Message</h2>
+    <form action="#" method="post" class="contact-form">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="5" required></textarea><br><br>
+
+        <button type="submit">Send</button>
+    </form>
+</main>
 
 <!-- Include footer fragment -->
 <div th:replace="~{fragments/general :: footer}"></div>
