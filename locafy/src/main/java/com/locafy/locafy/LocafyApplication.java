@@ -35,18 +35,16 @@ public class LocafyApplication {
 					"+40 723 213 5432",
 					"Bcharest Sector6, street, number 123"
 			);
-			/*local1.getRoles().add("ROLE_LOCAL");*/
 
 			Local local2 = new Local(
 					"oana",
 					"oanamaria@gmail.com",
-					"{noop}4oana32432", //{noop} is for testing purposes so that I don't have to provide an encoded passwd
+					"{noop}4oana32432", //{noop} = no encoding
 					"Oana",
 					"Maria",
 					"+40 723 543 1343",
 					"Pitesti, street, nr. 234"
 			);
-			/*local2.getRoles().add("ROLE_LOCAL");  // Hardcoding the ROLE_LOCAL directly*/
 
 
 
