@@ -47,12 +47,12 @@ public class Local {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String address;
 
-    @Getter
-    @Setter
-    @ElementCollection(fetch = FetchType.EAGER)  // To load roles eagerly from the database
+/*    @Getter
+    @Setter*/
+/*    @ElementCollection(fetch = FetchType.EAGER)  // To load roles eagerly from the database
     @CollectionTable(name = "local_roles", joinColumns = @JoinColumn(name = "local_id"))
     @Column(name = "role")
-    private Set<String> roles = new HashSet<>();  // Store roles as strings
+    private Set<String> roles = new HashSet<>();  // Store roles as strings*/
 
 public Local( String userName, String email, String password, String firstName, String lastName, String phoneNumber, String address) {
 

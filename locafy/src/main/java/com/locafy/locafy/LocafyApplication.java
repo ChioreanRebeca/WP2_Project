@@ -35,7 +35,7 @@ public class LocafyApplication {
 					"+40 723 213 5432",
 					"Bcharest Sector6, street, number 123"
 			);
-			local1.getRoles().add("ROLE_LOCAL");
+			/*local1.getRoles().add("ROLE_LOCAL");*/
 
 			Local local2 = new Local(
 					"oana",
@@ -46,7 +46,7 @@ public class LocafyApplication {
 					"+40 723 543 1343",
 					"Pitesti, street, nr. 234"
 			);
-			local2.getRoles().add("ROLE_LOCAL");  // Hardcoding the ROLE_LOCAL directly
+			/*local2.getRoles().add("ROLE_LOCAL");  // Hardcoding the ROLE_LOCAL directly*/
 
 
 
