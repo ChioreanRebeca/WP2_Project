@@ -3,12 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <title>About Us</title>
+  <link rel="stylesheet" th:href="@{/css/aboutstyle.css}">
   <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
 <div th:replace="~{fragments/general :: header}"></div>
 
-<p>This is the about us page</p>
+<main class="about-section">
+  <h1>About Us</h1>
+
+  <p>Welcome to <strong>Locafy</strong> — your digital gateway to local discovery.</p>
+
+  <p>At Locafy, we believe local businesses are the heart of every community. Our mission is to bridge the gap between residents and the services around them by offering a modern, easy-to-use platform where local businesses can thrive, and customers can connect with confidence.</p>
+
+  <p>Whether you're a business owner looking to showcase your services or a resident searching for trusted local providers, Locafy is built with you in mind. With personalized profiles, detailed listings, real customer reviews, and intuitive search tools, we make finding and offering services simpler and smarter.</p>
+
+  <h2>What We Offer</h2>
+  <ul>
+    <li>Business owners can register, upload images, and share their services with the community.</li>
+    <li>Customers can explore businesses, read reviews, and get in touch — all in one place.</li>
+    <li>Admins ensure the platform remains reliable, safe, and up to date.</li>
+  </ul>
+
+  <p>We designed Locafy with accessibility and functionality at its core. Powered by a secure Spring Boot backend and a responsive design, our platform is built to serve across all devices and users.</p>
+
+  <p>Let’s make local services more visible, accessible, and connected — together.</p>
+
+  <p>🔍 Discover local. Support local. Locafy.</p>
+</main>
 
 <!-- Include footer fragment -->
 <div th:replace="~{fragments/general :: footer}"></div>

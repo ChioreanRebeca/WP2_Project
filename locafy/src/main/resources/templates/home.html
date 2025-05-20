@@ -8,13 +8,14 @@
 </head>
 <body>
 
-<!-- Include header fragment -->
+<!--header fragment -->
 <div th:replace="~{fragments/general :: header}"></div>
 <main class="main-content">
     <section class="hero">
         <div class="hero-text">
             <h1>Your go-to hub for discovering local businesses</h1>
             <p>Connect to services in your local area: reliable, affordable, and trusted.</p>
+            </br>
             <a th:href="@{/login}" class="primary-btn">Discover now</a>
         </div>
         <div class="hero-image">
@@ -63,7 +64,7 @@
     </section>
 </main>
 
-<!-- Include footer fragment -->
+<!--footer fragment -->
 <div th:replace="~{fragments/general :: footer}"></div>
 
 </body>
