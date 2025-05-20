@@ -26,8 +26,8 @@ public class LocalsController {
     @Autowired
     BusinessRepository businessRepository;
 
-/*    @Autowired
-    private PasswordEncoder passwordEncoder;*/
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/locals-home")
     public String localsHomePage(Model model, Principal principal) {
@@ -56,11 +56,10 @@ public class LocalsController {
 
         currentLocal.setPhoneNumber(formLocal.getPhoneNumber());
         currentLocal.setAddress(formLocal.getAddress());
-        currentLocal.setPassword(formLocal.getPassword());
 
-        /*if (password != null && !password.isEmpty() && password.equals(confirmPassword)) {
+        if (password != null && !password.isEmpty() && password.equals(confirmPassword)) {
             currentLocal.setPassword(passwordEncoder.encode(password));
-        }*/
+        }
 
         localRepository.save(currentLocal);
         return "redirect:/local-profile";

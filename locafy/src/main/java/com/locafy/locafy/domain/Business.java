@@ -56,8 +56,8 @@ public class Business {
     @OneToMany(mappedBy = "business", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Favorites> favorites;
 
-    @OneToMany(mappedBy = "business", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private List<Reviews> reviews;
+/*    @OneToMany(mappedBy = "business", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Reviews> reviews;*/
 
     Business(String businessName, String phoneNumber, String email, String address, String website, String description) {
         this.businessName = businessName;
