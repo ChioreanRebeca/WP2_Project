@@ -22,7 +22,7 @@ import java.util.List;
 public class BusinessOwnerController {
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    PasswordEncoder passwordEncoder;
 
     private final BusinessOwnerRepository businessOwnerRepository;
     private final BusinessRepository businessRepository;

@@ -27,7 +27,7 @@ public class LocalsController {
     BusinessRepository businessRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    PasswordEncoder passwordEncoder;
 
     @GetMapping("/locals-home")
     public String localsHomePage(Model model, Principal principal) {

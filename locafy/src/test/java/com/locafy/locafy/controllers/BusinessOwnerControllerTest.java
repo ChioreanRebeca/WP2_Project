@@ -6,6 +6,7 @@ import com.locafy.locafy.repositories.BusinessRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.security.core.userdetails.User;
 
@@ -72,11 +73,20 @@ class BusinessOwnerControllerTest {
         BusinessOwner formOwner = new BusinessOwner();
         formOwner.setPhoneNumber("12345");
         formOwner.setAddress("New Address");
-        formOwner.setPassword("{noop}newpass");
 
         User userDetails = new User("biz123", "password", Collections.emptyList());
 
-        String result = controller.updateBusinessOwnerProfile(formOwner, null, null, userDetails);
+        String rawPassword = "newpass";
+        String encodedPassword = "{noop}newpass";
+
+        // Mock the password encoder
+        PasswordEncoder passwordEncoder = mock(PasswordEncoder.class);
+        when(passwordEncoder.encode(rawPassword)).thenReturn(encodedPassword);
+
+        controller = new BusinessOwnerController(businessOwnerRepository, businessRepository);
+        controller.passwordEncoder = passwordEncoder;
+
+        String result = controller.updateBusinessOwnerProfile(formOwner, rawPassword, rawPassword, userDetails);
 
         assertEquals("redirect:/business-owner-profile", result);
 
@@ -86,6 +96,7 @@ class BusinessOwnerControllerTest {
         BusinessOwner saved = captor.getValue();
         assertEquals("12345", saved.getPhoneNumber());
         assertEquals("New Address", saved.getAddress());
-        assertEquals("{noop}newpass", saved.getPassword());
+        assertEquals(encodedPassword, saved.getPassword());
     }
+
 }

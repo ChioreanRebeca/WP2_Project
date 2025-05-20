@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 
 import java.security.Principal;
@@ -78,7 +79,6 @@ class LocalControllerTest {
         Local formLocal = new Local();
         formLocal.setPhoneNumber("123456789");
         formLocal.setAddress("New Address");
-        formLocal.setPassword("newpass");
 
         Local currentLocal = new Local();
         currentLocal.setUserName("user123");
@@ -88,7 +88,13 @@ class LocalControllerTest {
 
         when(localRepository.findByUserName("user123")).thenReturn(Optional.of(currentLocal));
 
-        String redirect = localsController.updateLocalProfile(formLocal, null, null, userDetails);
+        //mock encoder
+        PasswordEncoder passwordEncoder = mock(PasswordEncoder.class);
+        when(passwordEncoder.encode("newpass")).thenReturn("{noop}newpass");
+
+        localsController.passwordEncoder = passwordEncoder;
+
+        String redirect = localsController.updateLocalProfile(formLocal, "newpass", "newpass", userDetails);
 
         assertThat(redirect).isEqualTo("redirect:/local-profile");
 
@@ -98,6 +104,7 @@ class LocalControllerTest {
 
         assertThat(savedLocal.getPhoneNumber()).isEqualTo("123456789");
         assertThat(savedLocal.getAddress()).isEqualTo("New Address");
-        assertThat(savedLocal.getPassword()).isEqualTo("newpass");
+        assertThat(savedLocal.getPassword()).isEqualTo("{noop}newpass");
     }
+
 }
