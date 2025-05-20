@@ -1,6 +1,8 @@
 package com.locafy.locafy.controllers;
 
 import com.locafy.locafy.domain.Business;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import com.locafy.locafy.domain.BusinessOwner;
 import com.locafy.locafy.repositories.BusinessOwnerRepository;
@@ -18,6 +20,9 @@ import java.util.List;
 
 @Controller
 public class BusinessOwnerController {
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     private final BusinessOwnerRepository businessOwnerRepository;
     private final BusinessRepository businessRepository;
@@ -56,11 +61,10 @@ public class BusinessOwnerController {
 
         currentOwner.setPhoneNumber(formOwner.getPhoneNumber());
         currentOwner.setAddress(formOwner.getAddress());
-        currentOwner.setPassword(formOwner.getPassword());
 
-        /*if (password != null && !password.isEmpty() && password.equals(confirmPassword)) {
-            currentLocal.setPassword(passwordEncoder.encode(password));
-        }*/
+        if (password != null && !password.isEmpty() && password.equals(confirmPassword)) {
+            currentOwner.setPassword(passwordEncoder.encode(password));
+        }
 
         businessOwnerRepository.save(currentOwner);
         return "redirect:/business-owner-profile";
