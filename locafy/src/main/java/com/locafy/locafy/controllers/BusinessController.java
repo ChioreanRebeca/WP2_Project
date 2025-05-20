@@ -36,12 +36,10 @@ public class BusinessController {
         this.localRepository = localRepository;
     }
 
-    // Show list of businesses for logged-in owner
     @GetMapping
     public String showBusinesses(Model model, Principal principal) {
         BusinessOwner owner = businessOwnerRepository.findByUsername(principal.getName()).orElseThrow();
 
-        // Attach first image ID for each business
         owner.getBusinesses().forEach(business -> {
             List<Image> images = imageRepository.findByBusinessId(business.getId());
             if (!images.isEmpty()) {
@@ -53,18 +51,16 @@ public class BusinessController {
         return "businesses";
     }
 
-    // Show empty form for creating new business
     @GetMapping("/business-details")
     public String newBusinessForm(Model model, Principal principal) {
         BusinessOwner owner = businessOwnerRepository.findByUsername(principal.getName()).orElseThrow();
         Business business = new Business();
-        business.setOwner(owner);  // pre-set owner
+        business.setOwner(owner);
         model.addAttribute("business", business);
         model.addAttribute("images", List.of());  // no images yet
         return "business-details";
     }
 
-    // Show form pre-filled with existing business data for editing
     @GetMapping("/business-details/{id}")
     public String editBusinessForm(@PathVariable Long id, Model model, Principal principal) {
         Business business = businessRepository.findById(id).orElseThrow();
@@ -80,20 +76,15 @@ public class BusinessController {
         return "business-details";
     }
 
-    // Handle form submit for both new and edited businesses
     @PostMapping("/business-details")
     public String saveBusiness(@ModelAttribute Business business, Principal principal) {
-        // Fetch owner from principal (username)
         BusinessOwner owner = businessOwnerRepository.findByUsername(principal.getName()).orElseThrow();
         business.setOwner(owner);
-
-        // Save the business (new or updated)
         businessRepository.save(business);
 
         return "redirect:/businesses/business-details/" + business.getId();
     }
 
-    // Upload image for a specific business
     @PostMapping("/{id}/upload-image")
     public String uploadImages(@PathVariable Long id, @RequestParam("files") MultipartFile[] files, Principal principal) throws IOException {
         Business business = businessRepository.findById(id).orElseThrow();
@@ -114,14 +105,12 @@ public class BusinessController {
         return "redirect:/businesses/business-details/" + id;
     }
 
-    // Serve business images
     @GetMapping("/images/{imageId}")
     public ResponseEntity<byte[]> getImage(@PathVariable Long imageId) {
         Image image = imageRepository.findById(imageId).orElseThrow();
         return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(image.getData());
     }
 
-    // Remove a business
     @PostMapping("/remove/{id}")
     public String removeBusiness(@PathVariable Long id, Principal principal, RedirectAttributes redirectAttributes) {
         BusinessOwner owner = businessOwnerRepository.findByUsername(principal.getName()).orElseThrow();
@@ -151,13 +140,11 @@ public class BusinessController {
         Business business;
 
         if (formBusiness.getId() != null) {
-            // Update existing business
             business = businessRepository.findById(formBusiness.getId()).orElseThrow();
             if (business.getOwner().getId() != owner.getId()) {
                 redirectAttributes.addFlashAttribute("error", "Unauthorized action.");
                 return "redirect:/businesses";
             }
-            // Update fields
             business.setBusinessName(formBusiness.getBusinessName());
             business.setPhoneNumber(formBusiness.getPhoneNumber());
             business.setEmail(formBusiness.getEmail());
@@ -165,7 +152,6 @@ public class BusinessController {
             business.setWebsite(formBusiness.getWebsite());
             business.setDescription(formBusiness.getDescription());
         } else {
-            // Create new business
             business = new Business();
             business.setOwner(owner);
             business.setBusinessName(formBusiness.getBusinessName());
@@ -176,10 +162,8 @@ public class BusinessController {
             business.setDescription(formBusiness.getDescription());
         }
 
-        // Save the business first (so it has an ID)
         businessRepository.save(business);
 
-        // Handle uploaded images (if any)
         if (files != null) {
             for (MultipartFile file : files) {
                 if (!file.isEmpty()) {
@@ -196,16 +180,6 @@ public class BusinessController {
         return "redirect:/businesses/business-details/" + business.getId();
     }
 
-    /*@ExceptionHandler(MaxUploadSizeExceededException.class)
-    public String handleMaxSizeException(RedirectAttributes redirectAttributes, HttpServletRequest request) {
-        redirectAttributes.addFlashAttribute("errorMessage", "Error: upload images smaller than 20MB");
-        // Redirect to the referring page (where the upload was attempted)
-        String referer = request.getHeader("Referer");
-        return "redirect:" + referer;
-    }
-    Doar daca mai am chef...daca imaginile depasesc de 50MB
-    */
-
     @PostMapping("/images/{imageId}/delete")
     public String deleteImage(@PathVariable Long imageId, Principal principal, RedirectAttributes redirectAttributes) {
         Image image = imageRepository.findById(imageId).orElse(null);
@@ -217,7 +191,6 @@ public class BusinessController {
 
         Business business = image.getBusiness();
 
-        // Check if logged-in user owns this business
         if (!business.getOwner().getUsername().equals(principal.getName())) {
             redirectAttributes.addFlashAttribute("error", "Unauthorized action.");
             return "redirect:/businesses";
@@ -240,23 +213,4 @@ public class BusinessController {
         model.addAttribute("business", business);
         return "business-overview";
     }
-
-   /* @GetMapping("/favorites")
-    public String showFavorites(Model model, Principal principal) {
-        Local localUser = localRepository.findByUserName(principal.getName())
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        List<Favorites> favorites = favoritesRepository.findByLocalUser(localUser);
-
-        for (Favorites favorite : favorites) {
-            List<Image> images = imageRepository.findByBusinessId(favorite.getBusiness().getId());
-            favorite.getBusiness().setImages(images);
-        }
-        model.addAttribute("local", localUser);
-        model.addAttribute("favorites", favorites);
-
-        return "favorites";
-    }*/
-
-
 }

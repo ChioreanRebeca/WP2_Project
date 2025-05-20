@@ -59,18 +59,18 @@ public class LocafyApplication {
 			BusinessOwner owner1 = new BusinessOwner();
 			owner1.setUsername("biz123");
 			owner1.setPassword("{noop}pass123");
-			owner1.setFirstName("John");
-			owner1.setLastName("Doe");
-			owner1.setEmail("john@example.com");
+			owner1.setFirstName("Alex");
+			owner1.setLastName("Popescu");
+			owner1.setEmail("alex@example.com");
 			owner1.setPhoneNumber("+40 700 000 000");
 			owner1.setAddress("Timisoara, str. Libertatii, nr. 10");
 
 			BusinessOwner owner2 = new BusinessOwner();
-			owner2.setUsername("startupgirl");
+			owner2.setUsername("startupguy");
 			owner2.setPassword("{noop}securepass");
-			owner2.setFirstName("Ana");
-			owner2.setLastName("Popescu");
-			owner2.setEmail("ana@startup.ro");
+			owner2.setFirstName("Andrei");
+			owner2.setLastName("Nitu");
+			owner2.setEmail("andrei@startup.ro");
 			owner2.setPhoneNumber("+40 711 222 333");
 			owner2.setAddress("Cluj, str. Observatorului, nr. 15");
 
@@ -80,10 +80,10 @@ public class LocafyApplication {
 
 			///business logic
 			BusinessOwner owner = new BusinessOwner();
-			owner.setUsername("ceoAnna");
-			owner.setFirstName("Anna");
+			owner.setUsername("ceoMihai");
+			owner.setFirstName("Mihai");
 			owner.setLastName("Ionescu");
-			owner.setEmail("anna@startup.ro");
+			owner.setEmail("mihai@startup.ro");
 			owner.setPhoneNumber("+40 700 111 222");
 			owner.setPassword("{noop}safePass123");
 			owner.setAddress("Cluj, str. Observatorului, nr. 15");
@@ -91,36 +91,36 @@ public class LocafyApplication {
 			BusinessOwner savedOwner = businessOwnerRepository.save(owner);
 
 			Business biz1 = new Business();
-			biz1.setBusinessName("Anna’s Coffee");
+			biz1.setBusinessName("Mihai’s Coffee");
 			biz1.setPhoneNumber("+40 711 123 456");
-			biz1.setEmail("coffee@anna.ro");
-			biz1.setWebsite("www.annascoffee.ro");
+			biz1.setEmail("coffee@mihai.ro");
+			biz1.setWebsite("www.scoffee.ro");
 			biz1.setDescription("Coffee");
 			biz1.setOwner(savedOwner);
 
 			Business biz2 = new Business();
-			biz2.setBusinessName("Anna’s Bakery");
+			biz2.setBusinessName("Mihai’s Bakery");
 			biz2.setPhoneNumber("+40 711 999 788");
-			biz2.setEmail("bakery@anna.ro");
-			biz2.setWebsite("www.annasbakery.ro");
+			biz2.setEmail("bakery@mihai.ro");
+			biz2.setWebsite("www.mbakery.ro");
 			biz2.setDescription("Bakery");
 			biz2.setOwner(savedOwner);
 
 			Business biz3 = new Business();
-			biz3.setBusinessName("Anna’s Cabbage Farm");
+			biz3.setBusinessName("Mihai’s Cabbage Farm");
 			biz3.setPhoneNumber("+40 711 999 777");
-			biz3.setEmail("cabbages@anna.ro");
-			biz3.setWebsite("www.annascabbages.ro");
+			biz3.setEmail("cabbages@mihai.ro");
+			biz3.setWebsite("www.mihaiscabbages.ro");
 			biz3.setDescription("Good delicious cabbages");
 			biz3.setOwner(savedOwner);
 
 			//business from owner1
 			Business biz4 = new Business();
-			biz4.setBusinessName("Separate Business");
+			biz4.setBusinessName("Alex's Bakery");
 			biz4.setPhoneNumber("+40 711 999 775");
-			biz4.setEmail("business@doe.ro");
-			biz4.setWebsite("www.doebusiness.ro");
-			biz4.setDescription("Good productive business");
+			biz4.setEmail("business@alex.ro");
+			biz4.setWebsite("www.alexbusiness.ro");
+			biz4.setDescription("Delicious bread and pretzels");
 			biz4.setOwner(savedOwner1);
 
 			businessRepository.saveAll(List.of(biz1, biz2, biz3, biz4));
@@ -172,9 +172,9 @@ public class LocafyApplication {
 				e.printStackTrace();
 			}
 
-			/// image for biz4 owner1: Separate
+			/// image for biz4 owner1: Alex Bakery
 			try {
-				ClassPathResource imgFile = new ClassPathResource("static/images/justbusiness.png");
+				ClassPathResource imgFile = new ClassPathResource("static/images/pretzel.png");
 				byte[] imageData = imgFile.getInputStream().readAllBytes();
 
 				Image image = new Image();

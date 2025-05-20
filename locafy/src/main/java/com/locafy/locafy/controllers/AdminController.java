@@ -46,24 +46,18 @@ public class AdminController {
     @PostMapping("/admin-page/delete-owner/{id}")
     @Transactional
     public String deleteOwner(@PathVariable Long id) {
-        // Find the owner
         BusinessOwner owner = businessOwnerRepository.findById(id).orElse(null);
         if (owner != null) {
-            // Get business IDs
             List<Long> businessIds = owner.getBusinesses().stream()
                     .map(Business::getId)
                     .collect(Collectors.toList());
 
-            // Delete favorites associated with those businesses
             favoritesRepository.deleteAllByBusinessIds(businessIds);
-
-            // Delete the owner (cascades to businesses due to CascadeType.ALL)
             businessOwnerRepository.deleteById(id);
         }
 
         return "redirect:/admin-page";
     }
-
 
     @PostMapping("/admin-page/delete-local/{id}")
     public String deleteLocal(@PathVariable Long id) {
@@ -71,5 +65,4 @@ public class AdminController {
         localRepository.deleteById(id);
         return "redirect:/admin-page";
     }
-
 }

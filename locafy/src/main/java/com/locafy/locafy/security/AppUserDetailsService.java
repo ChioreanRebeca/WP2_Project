@@ -27,7 +27,6 @@ public class AppUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // Try loading Business Owner
         var businessOwner = businessOwnerRepository.findByUsername(username);
         if (businessOwner.isPresent()) {
             return new User(
@@ -37,7 +36,6 @@ public class AppUserDetailsService implements UserDetailsService {
             );
         }
 
-        // Try loading Local
         var local = localRepository.findByUserName(username);
         if (local.isPresent()) {
             return new User(
@@ -47,7 +45,6 @@ public class AppUserDetailsService implements UserDetailsService {
             );
         }
 
-        // Try loading Admin
         var admin = adminRepository.findByUsername(username);
         if (admin.isPresent()) {
             return new User(
