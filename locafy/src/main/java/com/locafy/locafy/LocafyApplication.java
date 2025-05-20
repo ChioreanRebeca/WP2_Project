@@ -22,8 +22,7 @@ public class LocafyApplication {
 	}
 	@Bean
 	CommandLineRunner commandLineRunner (LocalRepository localRepository, BusinessRepository businessRepository,
-										 FavoritesRepository favoritesRepository, BusinessOwnerRepository businessOwnerRepository,
-										 ReviewsRepository reviewsRepository, ImageRepository imageRepository, AdminRepository adminRepository) {
+										 FavoritesRepository favoritesRepository, BusinessOwnerRepository businessOwnerRepository, ImageRepository imageRepository, AdminRepository adminRepository) {
 		return args -> {
 
 			/// locals logic
