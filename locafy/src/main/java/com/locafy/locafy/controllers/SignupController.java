@@ -22,8 +22,8 @@ public class SignupController {
     @Autowired
     private BusinessOwnerRepository businessOwnerRepository;
 
-    /*@Autowired
-    private PasswordEncoder passwordEncoder;*/
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/signup")
     public String showSignupForm(Model model) {
@@ -33,18 +33,18 @@ public class SignupController {
 
     @PostMapping("/signup")
     public String registerUser(@ModelAttribute("signupForm") SignupFormDTO form) {
-       /* String encodedPassword = passwordEncoder.encode(form.getPassword())*/;
+       String encodedPassword = passwordEncoder.encode(form.getPassword());
 
         if ("LOCAL".equalsIgnoreCase(form.getRole())) {
             Local local = new Local(
-                    form.getUsername(), form.getEmail(), form.getPassword(),
+                    form.getUsername(), form.getEmail(), encodedPassword,
                     form.getFirstName(), form.getLastName(), form.getPhoneNumber(), form.getAddress()
             );
             localRepository.save(local);
 
         } else if ("BUSINESS_OWNER".equalsIgnoreCase(form.getRole())) {
             BusinessOwner bOwner = new BusinessOwner(
-                    form.getUsername(), form.getPassword(), form.getFirstName(), form.getLastName(),
+                    form.getUsername(), encodedPassword, form.getFirstName(), form.getLastName(),
                     form.getEmail(), form.getPhoneNumber(), form.getAddress()
             );
             businessOwnerRepository.save(bOwner);

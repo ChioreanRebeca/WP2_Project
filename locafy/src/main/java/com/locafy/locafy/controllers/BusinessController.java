@@ -57,7 +57,7 @@ public class BusinessController {
         Business business = new Business();
         business.setOwner(owner);
         model.addAttribute("business", business);
-        model.addAttribute("images", List.of());  // no images yet
+        model.addAttribute("images", List.of());
         return "business-details";
     }
 
@@ -65,9 +65,8 @@ public class BusinessController {
     public String editBusinessForm(@PathVariable Long id, Model model, Principal principal) {
         Business business = businessRepository.findById(id).orElseThrow();
 
-        // Optional: check if logged-in user owns this business for security
         if (!business.getOwner().getUsername().equals(principal.getName())) {
-            return "redirect:/businesses";  // or throw 403 Forbidden
+            return "redirect:/businesses";
         }
 
         List<Image> images = imageRepository.findByBusinessId(id);
@@ -116,10 +115,8 @@ public class BusinessController {
         BusinessOwner owner = businessOwnerRepository.findByUsername(principal.getName()).orElseThrow();
 
         Business business = businessRepository.findById(id).orElseThrow();
-
-        // Check if business belongs to current owner before deleting (optional safety)
+        
         if (business.getOwner().getId() != owner.getId()) {
-            // unauthorized delete attempt - handle accordingly (e.g., throw exception or ignore)
             redirectAttributes.addFlashAttribute("error", "Unauthorized action.");
             return "redirect:/businesses";
         }
