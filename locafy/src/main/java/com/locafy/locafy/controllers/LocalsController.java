@@ -22,9 +22,9 @@ import java.util.List;
 public class LocalsController {
 
     @Autowired
-    private LocalRepository localRepository;
+    LocalRepository localRepository;
     @Autowired
-    private BusinessRepository businessRepository;
+    BusinessRepository businessRepository;
 
 /*    @Autowired
     private PasswordEncoder passwordEncoder;*/
